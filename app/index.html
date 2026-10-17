@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <!-- Адрес, с которого отдаётся веб-версия (avail.asia/app/): подставляет
+       flutter build web --base-href. -->
+  <base href="/app/">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <title>Avail — объявления Юго-Восточной Азии</title>
+  <meta name="description" content="Avail — маркетплейс объявлений: недвижимость, туры и экскурсии, транспорт, вещи и услуги. ИИ-перевод в чатах, умный поиск, карта.">
+  <meta name="theme-color" content="#1c1b1f">
+  <meta property="og:site_name" content="Avail">
+  <meta property="og:title" content="Avail — объявления Юго-Восточной Азии">
+  <meta property="og:description" content="Недвижимость, туры, транспорт, вещи и услуги. Пишите продавцу на своём языке — Avail переведёт.">
+  <meta property="og:image" content="icons/Icon-512.png">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Avail">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    html, body { margin: 0; height: 100%; background: #1c1b1f; }
+    /* Экран загрузки до первого кадра приложения: логотип «дышит»,
+       под ним бежит фирменная градиентная полоса. */
+    #avail-loader {
+      position: fixed; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 28px;
+      background: radial-gradient(1200px 600px at 50% 40%, #2a1f2e 0%, #1c1b1f 60%);
+      transition: opacity .5s ease, visibility .5s ease; z-index: 10;
+    }
+    #avail-loader.done { opacity: 0; visibility: hidden; }
+    #avail-loader img {
+      width: 112px; height: 112px;
+      animation: avail-breathe 2.4s ease-in-out infinite;
+      filter: drop-shadow(0 10px 30px rgba(236, 59, 119, .35));
+    }
+    #avail-loader .bar {
+      width: 180px; height: 4px; border-radius: 4px; overflow: hidden;
+      background: rgba(255,255,255,.08);
+    }
+    #avail-loader .bar::after {
+      content: ""; display: block; width: 40%; height: 100%; border-radius: 4px;
+      background: linear-gradient(90deg, #EC3B77, #3AA5F0);
+      animation: avail-run 1.4s cubic-bezier(.6,.1,.3,.9) infinite;
+    }
+    @keyframes avail-breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.07); }
+    }
+    @keyframes avail-run {
+      0% { transform: translateX(-110%); }
+      100% { transform: translateX(260%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #avail-loader img, #avail-loader .bar::after { animation: none; }
+    }
+  </style>
+
+  <!-- Google Maps для карт в веб-версии. Грузится асинхронно и не мешает
+       старту: если Google недоступен (Китай) или ключ отклонён — карты
+       заменяются плашкой «Открыть на карте» (lib/ui/widget/map_guard.dart). -->
+  <script>
+    window.gm_authFailure = function () { window.availMapsFailed = true; };
+  </script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsfPqhVuYjniiWK3EPJx2Do7ia17aOQoE&loading=async"></script>
+</head>
+<body>
+  <div id="avail-loader" aria-label="Avail">
+    <img src="icons/logo-256.png" alt="Avail">
+    <div class="bar"></div>
+  </div>
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      var l = document.getElementById('avail-loader');
+      if (l) { l.classList.add('done'); setTimeout(function () { l.remove(); }, 600); }
+    });
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

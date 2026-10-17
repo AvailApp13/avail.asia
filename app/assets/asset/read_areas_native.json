@@ -1,0 +1,650 @@
+{
+ "items": [
+  {
+   "id": "723c97dc22a240bd941faf22",
+   "Country": "Thailand",
+   "city_or_island": "Bangkok",
+   "districs": [
+    "Sukhumvit",
+    "Silom",
+    "Sathorn",
+    "Ratchada",
+    "Ari",
+    "Ladprao",
+    "Thonglor",
+    "Ekkamai",
+    "On Nut",
+    "Bang Na",
+    "Ramkhamhaeng",
+    "Chatuchak"
+   ],
+   "countru_id": 5,
+   "sorting": 10
+  },
+  {
+   "id": "594b7fa22f264c7fa0457aa3",
+   "Country": "Thailand",
+   "city_or_island": "Phuket",
+   "districs": [
+    "Patong",
+    "Kata",
+    "Karon",
+    "Kamala",
+    "Surin",
+    "Bang Tao",
+    "Laguna",
+    "Rawai",
+    "Nai Harn",
+    "Chalong",
+    "Phuket Town",
+    "Kathu",
+    "Thalang",
+    "Mai Khao",
+    "Nai Yang"
+   ],
+   "countru_id": 5,
+   "sorting": 20
+  },
+  {
+   "id": "2d7789f3560348bfa8fcf427",
+   "Country": "Thailand",
+   "city_or_island": "Pattaya",
+   "districs": [
+    "Central Pattaya",
+    "Naklua",
+    "South Pattaya",
+    "Jomtien",
+    "Pratumnak",
+    "Wongamat",
+    "East Pattaya",
+    "Na Jomtien",
+    "Bang Saray"
+   ],
+   "countru_id": 5,
+   "sorting": 30
+  },
+  {
+   "id": "dfbb53df579e4e4c874474bf",
+   "Country": "Thailand",
+   "city_or_island": "Koh Samui",
+   "districs": [
+    "Chaweng",
+    "Lamai",
+    "Bophut",
+    "Fisherman's Village",
+    "Maenam",
+    "Bang Rak",
+    "Choeng Mon",
+    "Nathon",
+    "Lipa Noi",
+    "Taling Ngam"
+   ],
+   "countru_id": 5,
+   "sorting": 40
+  },
+  {
+   "id": "678eab0947124de5a42598dc",
+   "Country": "Thailand",
+   "city_or_island": "Koh Phangan",
+   "districs": [
+    "Thong Sala",
+    "Haad Rin",
+    "Baan Tai",
+    "Baan Kai",
+    "Sri Thanu",
+    "Haad Yao",
+    "Chaloklum"
+   ],
+   "countru_id": 5,
+   "sorting": 50
+  },
+  {
+   "id": "6939d369a10442199344cd0c",
+   "Country": "Thailand",
+   "city_or_island": "Koh Tao",
+   "districs": [
+    "Mae Haad",
+    "Sairee",
+    "Chalok Baan Kao"
+   ],
+   "countru_id": 5,
+   "sorting": 60
+  },
+  {
+   "id": "299abf2c1f3c4b9ab1ffbbde",
+   "Country": "Thailand",
+   "city_or_island": "Chiang Mai",
+   "districs": [
+    "Old City",
+    "Nimman",
+    "Santitham",
+    "Chang Khlan",
+    "Hang Dong",
+    "Mae Rim",
+    "San Sai"
+   ],
+   "countru_id": 5,
+   "sorting": 70
+  },
+  {
+   "id": "92c9b2b936a94b5992de037d",
+   "Country": "Thailand",
+   "city_or_island": "Krabi",
+   "districs": [
+    "Ao Nang",
+    "Krabi Town",
+    "Klong Muang",
+    "Railay",
+    "Koh Lanta",
+    "Koh Phi Phi"
+   ],
+   "countru_id": 5,
+   "sorting": 80
+  },
+  {
+   "id": "4bc28de4ec4147efb15de069",
+   "Country": "Thailand",
+   "city_or_island": "Hua Hin",
+   "districs": [
+    "Hua Hin Town",
+    "Khao Takiab",
+    "Cha-am",
+    "Pranburi"
+   ],
+   "countru_id": 5,
+   "sorting": 90
+  },
+  {
+   "id": "1e8e55589b064ba2bef4b764",
+   "Country": "Thailand",
+   "city_or_island": "Koh Chang",
+   "districs": [
+    "White Sand Beach",
+    "Klong Prao",
+    "Kai Bae",
+    "Lonely Beach",
+    "Bang Bao"
+   ],
+   "countru_id": 5,
+   "sorting": 100
+  },
+  {
+   "id": "beb0829c91e049d48dbfa96f",
+   "Country": "Thailand",
+   "city_or_island": "Khao Lak",
+   "districs": [
+    "Bang Niang",
+    "Nang Thong"
+   ],
+   "countru_id": 5,
+   "sorting": 110
+  },
+  {
+   "id": "a93fd860916740619267bbfd",
+   "Country": "Thailand",
+   "city_or_island": "Koh Samet",
+   "districs": [],
+   "countru_id": 5,
+   "sorting": 120
+  },
+  {
+   "id": "edf29748938e4d228d6013cc",
+   "Country": "Thailand",
+   "city_or_island": "Chiang Rai",
+   "districs": [],
+   "countru_id": 5,
+   "sorting": 130
+  },
+  {
+   "id": "dbb89878e8bf4e99950dc688",
+   "Country": "Vietnam",
+   "city_or_island": "Nha Trang",
+   "districs": [
+    "City Center",
+    "Pham Van Dong",
+    "Vinh Hoa",
+    "Vinh Nguyen",
+    "An Vien",
+    "Bai Dai"
+   ],
+   "countru_id": 1,
+   "sorting": 10
+  },
+  {
+   "id": "831915ebbcb14efdb1fbab8d",
+   "Country": "Vietnam",
+   "city_or_island": "Da Nang",
+   "districs": [
+    "My An",
+    "An Thuong",
+    "My Khe",
+    "Son Tra",
+    "Ngu Hanh Son",
+    "Hai Chau",
+    "Thanh Khe"
+   ],
+   "countru_id": 1,
+   "sorting": 20
+  },
+  {
+   "id": "81723b53541743ccafe32de1",
+   "Country": "Vietnam",
+   "city_or_island": "Ho Chi Minh City",
+   "districs": [
+    "District 1",
+    "District 2",
+    "Thao Dien",
+    "District 3",
+    "District 4",
+    "District 5",
+    "District 7",
+    "Binh Thanh",
+    "Phu Nhuan",
+    "Tan Binh"
+   ],
+   "countru_id": 1,
+   "sorting": 30
+  },
+  {
+   "id": "10e2fc1cb9aa4512a3033bf9",
+   "Country": "Vietnam",
+   "city_or_island": "Hanoi",
+   "districs": [
+    "Hoan Kiem",
+    "Tay Ho",
+    "Ba Dinh",
+    "Dong Da",
+    "Cau Giay",
+    "Hai Ba Trung",
+    "Long Bien"
+   ],
+   "countru_id": 1,
+   "sorting": 40
+  },
+  {
+   "id": "4ccfce61aa2a4f6e9d925281",
+   "Country": "Vietnam",
+   "city_or_island": "Phu Quoc",
+   "districs": [
+    "Duong Dong",
+    "Ong Lang",
+    "An Thoi",
+    "Ham Ninh",
+    "Ganh Dau"
+   ],
+   "countru_id": 1,
+   "sorting": 50
+  },
+  {
+   "id": "796412e180f84706b05ec56e",
+   "Country": "Vietnam",
+   "city_or_island": "Hoi An",
+   "districs": [
+    "Old Town",
+    "An Bang",
+    "Cam An",
+    "Cam Chau"
+   ],
+   "countru_id": 1,
+   "sorting": 60
+  },
+  {
+   "id": "07ca3f966908428bb4f6c635",
+   "Country": "Vietnam",
+   "city_or_island": "Mui Ne",
+   "districs": [
+    "Mui Ne",
+    "Ham Tien",
+    "Phan Thiet"
+   ],
+   "countru_id": 1,
+   "sorting": 70
+  },
+  {
+   "id": "81ae412d45434bcc86ac9cd3",
+   "Country": "Vietnam",
+   "city_or_island": "Da Lat",
+   "districs": [],
+   "countru_id": 1,
+   "sorting": 80
+  },
+  {
+   "id": "b49c8bfdff9d4309be9f1164",
+   "Country": "Vietnam",
+   "city_or_island": "Vung Tau",
+   "districs": [],
+   "countru_id": 1,
+   "sorting": 90
+  },
+  {
+   "id": "4efe7197c5c1490881a69945",
+   "Country": "Indonesia",
+   "city_or_island": "Bali",
+   "districs": [
+    "Canggu",
+    "Berawa",
+    "Pererenan",
+    "Seminyak",
+    "Legian",
+    "Kuta",
+    "Umalas",
+    "Kerobokan",
+    "Ubud",
+    "Sanur",
+    "Jimbaran",
+    "Uluwatu",
+    "Bukit",
+    "Nusa Dua",
+    "Denpasar",
+    "Amed",
+    "Lovina",
+    "Candidasa"
+   ],
+   "countru_id": 2,
+   "sorting": 10
+  },
+  {
+   "id": "e7c0a12537264165aacd4e41",
+   "Country": "Indonesia",
+   "city_or_island": "Jakarta",
+   "districs": [
+    "Central Jakarta",
+    "South Jakarta",
+    "North Jakarta",
+    "West Jakarta",
+    "East Jakarta"
+   ],
+   "countru_id": 2,
+   "sorting": 20
+  },
+  {
+   "id": "c4c94c31e2b54da68970a5db",
+   "Country": "Indonesia",
+   "city_or_island": "Lombok",
+   "districs": [
+    "Kuta Lombok",
+    "Senggigi",
+    "Mataram"
+   ],
+   "countru_id": 2,
+   "sorting": 30
+  },
+  {
+   "id": "3db8a4e20e78461ba1e47318",
+   "Country": "Indonesia",
+   "city_or_island": "Gili Islands",
+   "districs": [
+    "Gili Trawangan",
+    "Gili Air",
+    "Gili Meno"
+   ],
+   "countru_id": 2,
+   "sorting": 40
+  },
+  {
+   "id": "687aa4215aab4d73b1cb5e59",
+   "Country": "Indonesia",
+   "city_or_island": "Nusa Penida",
+   "districs": [],
+   "countru_id": 2,
+   "sorting": 50
+  },
+  {
+   "id": "f2ec2b0bb1734c169bc6c609",
+   "Country": "Indonesia",
+   "city_or_island": "Yogyakarta",
+   "districs": [],
+   "countru_id": 2,
+   "sorting": 60
+  },
+  {
+   "id": "6ed8bfd5795d4d9f926ecad2",
+   "Country": "Indonesia",
+   "city_or_island": "Bandung",
+   "districs": [],
+   "countru_id": 2,
+   "sorting": 70
+  },
+  {
+   "id": "fa1c7aa06a9c46809ed2bd51",
+   "Country": "Indonesia",
+   "city_or_island": "Surabaya",
+   "districs": [],
+   "countru_id": 2,
+   "sorting": 80
+  },
+  {
+   "id": "96eba27447aa43248aba2365",
+   "Country": "Indonesia",
+   "city_or_island": "Batam",
+   "districs": [],
+   "countru_id": 2,
+   "sorting": 90
+  },
+  {
+   "id": "ca47493b472c440c8d678d41",
+   "Country": "Malaysia",
+   "city_or_island": "Kuala Lumpur",
+   "districs": [
+    "KLCC",
+    "Bukit Bintang",
+    "Mont Kiara",
+    "Bangsar",
+    "Ampang",
+    "Cheras",
+    "Sentul",
+    "Titiwangsa"
+   ],
+   "countru_id": 3,
+   "sorting": 10
+  },
+  {
+   "id": "91080e0f8ad545a082d1dfdc",
+   "Country": "Malaysia",
+   "city_or_island": "Penang",
+   "districs": [
+    "George Town",
+    "Batu Ferringhi",
+    "Tanjung Bungah",
+    "Tanjung Tokong",
+    "Bayan Lepas"
+   ],
+   "countru_id": 3,
+   "sorting": 20
+  },
+  {
+   "id": "9ca84cb712c740009399e1ac",
+   "Country": "Malaysia",
+   "city_or_island": "Langkawi",
+   "districs": [
+    "Pantai Cenang",
+    "Pantai Tengah",
+    "Kuah"
+   ],
+   "countru_id": 3,
+   "sorting": 30
+  },
+  {
+   "id": "d9c6face31cc41d39aaedad4",
+   "Country": "Malaysia",
+   "city_or_island": "Johor Bahru",
+   "districs": [],
+   "countru_id": 3,
+   "sorting": 40
+  },
+  {
+   "id": "181c5eddd246481a96e03db6",
+   "Country": "Malaysia",
+   "city_or_island": "Kota Kinabalu",
+   "districs": [],
+   "countru_id": 3,
+   "sorting": 50
+  },
+  {
+   "id": "437a9248025e48629ae7707c",
+   "Country": "Malaysia",
+   "city_or_island": "Malacca",
+   "districs": [],
+   "countru_id": 3,
+   "sorting": 60
+  },
+  {
+   "id": "a2c6282efd5a4ac5a6d3f9ad",
+   "Country": "Malaysia",
+   "city_or_island": "Ipoh",
+   "districs": [],
+   "countru_id": 3,
+   "sorting": 70
+  },
+  {
+   "id": "3b577ed83828471a978480c7",
+   "Country": "Malaysia",
+   "city_or_island": "Cameron Highlands",
+   "districs": [],
+   "countru_id": 3,
+   "sorting": 80
+  },
+  {
+   "id": "20f04fc8b1084581818520cc",
+   "Country": "Cambodia",
+   "city_or_island": "Phnom Penh",
+   "districs": [
+    "BKK1",
+    "BKK2",
+    "BKK3",
+    "Riverside",
+    "Toul Kork",
+    "Toul Tom Poung",
+    "Chroy Changvar",
+    "Sen Sok"
+   ],
+   "countru_id": 4,
+   "sorting": 10
+  },
+  {
+   "id": "f69d2909772b4b6da84e3e07",
+   "Country": "Cambodia",
+   "city_or_island": "Sihanoukville",
+   "districs": [
+    "Downtown",
+    "Otres",
+    "Serendipity",
+    "Victory Hill"
+   ],
+   "countru_id": 4,
+   "sorting": 20
+  },
+  {
+   "id": "19619486d4f74faab04e73b3",
+   "Country": "Cambodia",
+   "city_or_island": "Siem Reap",
+   "districs": [
+    "City Center",
+    "Wat Bo",
+    "Svay Dangkum"
+   ],
+   "countru_id": 4,
+   "sorting": 30
+  },
+  {
+   "id": "2ab3cefa2a5c46dbabf11f6e",
+   "Country": "Cambodia",
+   "city_or_island": "Kampot",
+   "districs": [],
+   "countru_id": 4,
+   "sorting": 40
+  },
+  {
+   "id": "88b0087d6ab5426894469c78",
+   "Country": "Cambodia",
+   "city_or_island": "Kep",
+   "districs": [],
+   "countru_id": 4,
+   "sorting": 50
+  },
+  {
+   "id": "4eae8c1dd5ea4daca04fa9eb",
+   "Country": "Cambodia",
+   "city_or_island": "Koh Rong",
+   "districs": [
+    "Koh Touch",
+    "Sok San",
+    "Koh Rong Samloem"
+   ],
+   "countru_id": 4,
+   "sorting": 60
+  },
+  {
+   "id": "01eb74ff88fb466aad32bbdf",
+   "Country": "Cambodia",
+   "city_or_island": "Battambang",
+   "districs": [],
+   "countru_id": 4,
+   "sorting": 70
+  },
+  {
+   "id": "ec4b83516e8346c2aa9b5ef2",
+   "Country": "Russia",
+   "city_or_island": "Moscow",
+   "districs": [],
+   "countru_id": 6,
+   "sorting": 10
+  },
+  {
+   "id": "9e24e3e0d7ff40fabc577414",
+   "Country": "Russia",
+   "city_or_island": "Saint Petersburg",
+   "districs": [],
+   "countru_id": 6,
+   "sorting": 20
+  },
+  {
+   "id": "d746a51ff29142eb8a8ea693",
+   "Country": "Russia",
+   "city_or_island": "Sochi",
+   "districs": [],
+   "countru_id": 6,
+   "sorting": 30
+  },
+  {
+   "id": "ae7cd674eb5f4a9a80af310c",
+   "Country": "Russia",
+   "city_or_island": "Krasnodar",
+   "districs": [],
+   "countru_id": 6,
+   "sorting": 40
+  },
+  {
+   "id": "9f70c716f98d47b6aa5248aa",
+   "Country": "Russia",
+   "city_or_island": "Kazan",
+   "districs": [],
+   "countru_id": 6,
+   "sorting": 50
+  },
+  {
+   "id": "8ddfc0a3ff324f61b6393a08",
+   "Country": "Russia",
+   "city_or_island": "Yekaterinburg",
+   "districs": [],
+   "countru_id": 6,
+   "sorting": 60
+  },
+  {
+   "id": "db89bb7526664577a0b66fa4",
+   "Country": "Russia",
+   "city_or_island": "Novosibirsk",
+   "districs": [],
+   "countru_id": 6,
+   "sorting": 70
+  },
+  {
+   "id": "9205192894a148fa9219dc09",
+   "Country": "Russia",
+   "city_or_island": "Vladivostok",
+   "districs": [],
+   "countru_id": 6,
+   "sorting": 80
+  }
+ ]
+}
