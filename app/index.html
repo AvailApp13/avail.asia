@@ -18,7 +18,9 @@ if (location.protocol === "http:" && !/^(localhost|127\.|\[::1\])/.test(location
   <meta property="og:site_name" content="Avail">
   <meta property="og:title" content="Avail — объявления Юго-Восточной Азии">
   <meta property="og:description" content="Недвижимость, туры, транспорт, вещи и услуги. Пишите продавцу на своём языке — Avail переведёт.">
-  <meta property="og:image" content="icons/Icon-512.png">
+  <!-- Соцсети и мессенджеры принимают только полный адрес картинки. -->
+  <meta property="og:url" content="https://avail.asia/app/">
+  <meta property="og:image" content="https://avail.asia/app/icons/Icon-512.png">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -72,6 +74,12 @@ if (location.protocol === "http:" && !/^(localhost|127\.|\[::1\])/.test(location
     window.gm_authFailure = function () { window.availMapsFailed = true; };
   </script>
   <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsfPqhVuYjniiWK3EPJx2Do7ia17aOQoE&loading=async"></script>
+  <!-- Группировка меток на карте поиска: плагину карт в браузере нужен
+       глобальный markerClusterer (версия 2.5.3 — её требует
+       google_maps_flutter_web, Apache-2.0). Файл лежит у нас: внешние CDN
+       из Китая открываются через раз. Не загрузился — карта покажет метки
+       без группировки (lib/features/search/view/map_clusterer.dart). -->
+  <script async src="vendor/markerclusterer-2.5.3.min.js"></script>
 </head>
 <body>
   <div id="avail-loader" aria-label="Avail">

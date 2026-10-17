@@ -575,7 +575,8 @@ footer a:hover{color:var(--fg)}
       <!-- Свои статичные страницы: функция legal отдаёт text/plain (сырой текст). -->
       <a href="legal/privacy/" data-i="privacy">Конфиденциальность</a>
       <a href="legal/terms/" data-i="terms">Правила</a>
-      <a href="support.html" data-i="support">Поддержка</a>
+      <!-- legal/support/ сам уводит на язык гостя; support.html — только по-русски. -->
+      <a href="legal/support/" data-i="support">Поддержка</a>
       <span>avail.press@gmail.com</span>
     </nav>
     <span>© 2026 Avail · <span data-i="rights">Все права защищены</span></span>
@@ -718,11 +719,12 @@ const SUPA = "https://paikboidnrgthyxpwdrk.supabase.co";
 const ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhaWtib2lkbnJndGh5eHB3ZHJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0OTM2NDksImV4cCI6MjA5NjA2OTY0OX0.4RcHFtSg1lxytBEk4HrWaN_dtmshcTfVWd2VVf8LaO4";
 // Подписи примеров — из словаря: объект {ru:…, en:…, …} на каждое поле.
 const byLang = k => Object.fromEntries(LANGS.map(([c]) => [c, t(c, k)]));
+// id — свой пример на странице a/ (DEMOS в advert.template.html).
 const SAMPLES = [
-  {img:"assets/img/photos/villa.jpg", name:byLang("villaTitle"), price:130000, cur:"THB", loc:byLang("villaLoc"), sample:true},
-  {img:"assets/img/photos/room.jpg", name:byLang("smpCondo"), price:35000, cur:"THB", loc:byLang("smpCondoLoc"), sample:true},
-  {img:"assets/img/photos/scooter.jpg", name:byLang("smpScooter"), price:3500, cur:"THB", loc:byLang("smpScooterLoc"), sample:true},
-  {img:"assets/img/photos/yacht.jpg", name:byLang("smpYacht"), price:42000, cur:"THB", loc:byLang("smpYachtLoc"), sample:true}
+  {id:"demo-villa", img:"assets/img/photos/villa.jpg", name:byLang("villaTitle"), price:130000, cur:"THB", loc:byLang("villaLoc"), sample:true},
+  {id:"demo-condo", img:"assets/img/photos/room.jpg", name:byLang("smpCondo"), price:35000, cur:"THB", loc:byLang("smpCondoLoc"), sample:true},
+  {id:"demo-scooter", img:"assets/img/photos/scooter.jpg", name:byLang("smpScooter"), price:3500, cur:"THB", loc:byLang("smpScooterLoc"), sample:true},
+  {id:"demo-yacht", img:"assets/img/photos/yacht.jpg", name:byLang("smpYacht"), price:42000, cur:"THB", loc:byLang("smpYachtLoc"), sample:true}
 ];
 let currentCards = SAMPLES;
 const fmt = n => (n == null ? "" : Number(n).toLocaleString("ru-RU").replace(/,/g, " "));
