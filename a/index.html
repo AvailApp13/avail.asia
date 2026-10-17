@@ -3,14 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Avail — объявление</title>
+<title>Avail — listing</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Объявление на Avail: фото, цена, описание и связь с продавцом на вашем языке.">
+<meta name="description" content="A listing on Avail: photos, price, description. Message the seller in your own language — Avail translates.">
 <meta name="theme-color" content="#141218">
 <meta property="og:site_name" content="Avail">
-<meta property="og:title" content="Объявление на Avail">
-<meta property="og:description" content="Откройте объявление и напишите продавцу на своём языке — Avail переведёт.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Listing on Avail">
+<meta property="og:description" content="Open the listing and message the seller in your own language — Avail translates.">
 <meta property="og:image" content="https://avail.asia/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="../assets/img/logo.png">
 <style>
 /* Страница одного объявления по ссылке «Поделиться»: те же токены, что у
@@ -54,8 +56,8 @@ main{padding-block:28px 64px}
 .thumbs button{flex:none;width:92px;height:70px;padding:0;border-radius:12px;overflow:hidden;border:2px solid transparent;background:var(--surface);cursor:pointer;opacity:.6;transition:opacity .2s,border-color .2s}
 .thumbs button[aria-current="true"]{opacity:1;border-color:var(--blue)}
 .thumbs img{width:100%;height:100%;object-fit:cover}
-.info{position:sticky;top:84px;display:grid;gap:16px;padding:24px;border-radius:24px;background:var(--surface);border:1px solid var(--line)}
-.info h1{font:800 clamp(22px,2.4vw,30px)/1.15 var(--display);margin:0;text-wrap:balance}
+.info{position:sticky;top:84px;display:grid;grid-template-columns:minmax(0,1fr);gap:16px;padding:24px;border-radius:24px;background:var(--surface);border:1px solid var(--line)}
+.info h1{font:800 clamp(22px,2.4vw,30px)/1.15 var(--display);margin:0;text-wrap:balance;overflow-wrap:anywhere;hyphens:auto}
 .price{font:800 30px/1 var(--body);font-variant-numeric:tabular-nums}
 .price small{font-size:14px;color:var(--muted);margin-left:4px}
 .loc{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:14.5px}
@@ -64,7 +66,7 @@ main{padding-block:28px 64px}
 .note{font-size:13px;color:var(--muted)}
 .desc{margin-top:28px;padding:24px;border-radius:22px;background:var(--surface);border:1px solid var(--line)}
 .desc h2{font:800 18px var(--display);margin:0 0 10px}
-.desc p{margin:0;white-space:pre-line;color:#dcd8e4;max-width:70ch}
+.desc p{margin:0;white-space:pre-line;color:#dcd8e4;max-width:70ch;overflow-wrap:anywhere}
 .stores{display:flex;flex-wrap:wrap;gap:10px}
 .store{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 16px;border-radius:14px;background:#0b0a0e;border:1px solid rgba(243,241,247,.16);text-decoration:none;color:#fff}
 .store svg{width:22px;height:22px}
@@ -75,7 +77,7 @@ main{padding-block:28px 64px}
 .skel{background:linear-gradient(90deg,var(--surface),var(--raised),var(--surface));background-size:200% 100%;animation:sk 1.2s linear infinite;border-radius:12px}
 @keyframes sk{to{background-position:-200% 0}}
 footer{padding-block:24px 48px;color:var(--muted);font-size:13.5px;text-align:center}
-@media (max-width:860px){.layout{grid-template-columns:1fr}.info{position:static}}
+@media (max-width:860px){.layout{grid-template-columns:minmax(0,1fr)}.info{position:static}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 
@@ -101,6 +103,12 @@ footer{padding-block:24px 48px;color:var(--muted);font-size:13.5px;text-align:ce
     <a class="btn btn-grad" href="../app/" data-i="openFeed">Открыть ленту</a>
   </div>
 
+  <div id="error" class="state" hidden>
+    <h1 data-i="errT">Не удалось загрузить</h1>
+    <p data-i="errD">Проверьте интернет и попробуйте ещё раз.</p>
+    <button class="btn btn-grad" id="retry" type="button" data-i="retry">Повторить</button>
+  </div>
+
   <article id="advert" hidden>
     <div class="layout">
       <div class="gallery">
@@ -113,7 +121,7 @@ footer{padding-block:24px 48px;color:var(--muted);font-size:13.5px;text-align:ce
         <div class="loc" id="locRow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span id="loc"></span></div>
         <div class="actions">
           <a class="btn btn-grad" id="openInApp" href="#" data-i="openInApp">Открыть в приложении</a>
-          <a class="btn btn-ghost" href="../app/" data-i="writeSeller">Написать продавцу на сайте</a>
+          <a class="btn btn-ghost" id="writeSeller" href="../app/" data-i="writeSeller">Написать продавцу на сайте</a>
         </div>
         <span class="note" data-i="aiNote">Пишите на своём языке — Avail переведёт для продавца.</span>
         <div class="stores">
@@ -129,7 +137,7 @@ footer{padding-block:24px 48px;color:var(--muted);font-size:13.5px;text-align:ce
 <footer>© 2026 Avail</footer>
 
 <script>
-const I18N = {"ru":{"openApp":"Открыть Avail","nfT":"Объявление не найдено","nfD":"Возможно, его уже сняли с публикации. Посмотрите похожие в ленте Avail.","openFeed":"Открыть ленту","openInApp":"Открыть в приложении","writeSeller":"Написать продавцу на сайте","aiNote":"Пишите на своём языке — Avail переведёт для продавца.","descT":"Описание"},"en":{"openApp":"Open Avail","nfT":"Listing not found","nfD":"It may have been taken down. See similar offers in the Avail feed.","openFeed":"Open the feed","openInApp":"Open in the app","writeSeller":"Message the seller on the web","aiNote":"Write in your language — Avail translates for the seller.","descT":"Description"},"th":{"openApp":"เปิด Avail","nfT":"ไม่พบประกาศ","nfD":"ประกาศนี้อาจถูกปิดแล้ว ดูประกาศที่คล้ายกันในฟีด Avail","openFeed":"เปิดฟีด","openInApp":"เปิดในแอป","writeSeller":"ส่งข้อความถึงผู้ขายบนเว็บ","aiNote":"พิมพ์ภาษาของคุณ — Avail แปลให้ผู้ขาย","descT":"รายละเอียด"},"zh":{"openApp":"打开 Avail","nfT":"未找到该信息","nfD":"可能已下架。去 Avail 信息流看看类似的。","openFeed":"打开信息流","openInApp":"在应用中打开","writeSeller":"在网页上联系卖家","aiNote":"用你的语言写——Avail 会为卖家翻译。","descT":"描述"},"vi":{"openApp":"Mở Avail","nfT":"Không tìm thấy tin","nfD":"Có thể tin đã bị gỡ. Xem tin tương tự trong bảng tin Avail.","openFeed":"Mở bảng tin","openInApp":"Mở trong ứng dụng","writeSeller":"Nhắn người bán trên web","aiNote":"Viết bằng ngôn ngữ của bạn — Avail dịch cho người bán.","descT":"Mô tả"},"id":{"openApp":"Buka Avail","nfT":"Iklan tidak ditemukan","nfD":"Mungkin sudah diturunkan. Lihat iklan serupa di feed Avail.","openFeed":"Buka feed","openInApp":"Buka di aplikasi","writeSeller":"Kirim pesan ke penjual di web","aiNote":"Tulis dalam bahasamu — Avail menerjemahkan untuk penjual.","descT":"Deskripsi"},"ms":{"openApp":"Buka Avail","nfT":"Iklan tidak ditemui","nfD":"Mungkin sudah diturunkan. Lihat iklan serupa dalam suapan Avail.","openFeed":"Buka suapan","openInApp":"Buka dalam aplikasi","writeSeller":"Hantar mesej kepada penjual di web","aiNote":"Tulis dalam bahasa anda — Avail terjemahkan untuk penjual.","descT":"Penerangan"},"km":{"openApp":"បើក Avail","nfT":"រកមិនឃើញប្រកាស","nfD":"ប្រហែលជាត្រូវបានដកចេញហើយ។ មើលប្រកាសស្រដៀងគ្នាក្នុង Avail។","openFeed":"បើកព័ត៌មាន","openInApp":"បើកក្នុងកម្មវិធី","writeSeller":"ផ្ញើសារទៅអ្នកលក់លើគេហទំព័រ","aiNote":"សរសេរជាភាសារបស់អ្នក — Avail បកប្រែជូនអ្នកលក់។","descT":"ការពិពណ៌នា"}};
+const I18N = {"ru":{"openApp":"Открыть Avail","nfT":"Объявление не найдено","nfD":"Возможно, его уже сняли с публикации. Посмотрите похожие в ленте Avail.","openFeed":"Открыть ленту","openInApp":"Открыть в приложении","writeSeller":"Написать продавцу на сайте","aiNote":"Пишите на своём языке — Avail переведёт для продавца.","descT":"Описание","errT":"Не удалось загрузить","errD":"Проверьте интернет и попробуйте ещё раз.","retry":"Повторить"},"en":{"openApp":"Open Avail","nfT":"Listing not found","nfD":"It may have been taken down. See similar offers in the Avail feed.","openFeed":"Open the feed","openInApp":"Open in the app","writeSeller":"Message the seller on the web","aiNote":"Write in your language — Avail translates for the seller.","descT":"Description","errT":"Couldn't load the listing","errD":"Check your connection and try again.","retry":"Try again"},"th":{"openApp":"เปิด Avail","nfT":"ไม่พบประกาศ","nfD":"ประกาศนี้อาจถูกปิดแล้ว ดูประกาศที่คล้ายกันในฟีด Avail","openFeed":"เปิดฟีด","openInApp":"เปิดในแอป","writeSeller":"ส่งข้อความถึงผู้ขายบนเว็บ","aiNote":"พิมพ์ภาษาของคุณ — Avail แปลให้ผู้ขาย","descT":"รายละเอียด","errT":"โหลดประกาศไม่สำเร็จ","errD":"ตรวจสอบอินเทอร์เน็ตแล้วลองอีกครั้ง","retry":"ลองอีกครั้ง"},"zh":{"openApp":"打开 Avail","nfT":"未找到该信息","nfD":"可能已下架。去 Avail 信息流看看类似的。","openFeed":"打开信息流","openInApp":"在应用中打开","writeSeller":"在网页上联系卖家","aiNote":"用你的语言写——Avail 会为卖家翻译。","descT":"描述","errT":"无法加载信息","errD":"请检查网络后重试。","retry":"重试"},"vi":{"openApp":"Mở Avail","nfT":"Không tìm thấy tin","nfD":"Có thể tin đã bị gỡ. Xem tin tương tự trong bảng tin Avail.","openFeed":"Mở bảng tin","openInApp":"Mở trong ứng dụng","writeSeller":"Nhắn người bán trên web","aiNote":"Viết bằng ngôn ngữ của bạn — Avail dịch cho người bán.","descT":"Mô tả","errT":"Không tải được tin đăng","errD":"Kiểm tra kết nối mạng và thử lại.","retry":"Thử lại"},"id":{"openApp":"Buka Avail","nfT":"Iklan tidak ditemukan","nfD":"Mungkin sudah diturunkan. Lihat iklan serupa di feed Avail.","openFeed":"Buka feed","openInApp":"Buka di aplikasi","writeSeller":"Kirim pesan ke penjual di web","aiNote":"Tulis dalam bahasamu — Avail menerjemahkan untuk penjual.","descT":"Deskripsi","errT":"Gagal memuat iklan","errD":"Periksa koneksi internet Anda dan coba lagi.","retry":"Coba lagi"},"ms":{"openApp":"Buka Avail","nfT":"Iklan tidak ditemui","nfD":"Mungkin sudah diturunkan. Lihat iklan serupa dalam suapan Avail.","openFeed":"Buka suapan","openInApp":"Buka dalam aplikasi","writeSeller":"Hantar mesej kepada penjual di web","aiNote":"Tulis dalam bahasa anda — Avail terjemahkan untuk penjual.","descT":"Penerangan","errT":"Tidak dapat memuatkan iklan","errD":"Semak sambungan internet anda dan cuba lagi.","retry":"Cuba lagi"},"km":{"openApp":"បើក Avail","nfT":"រកមិនឃើញប្រកាស","nfD":"ប្រហែលជាត្រូវបានដកចេញហើយ។ មើលប្រកាសស្រដៀងគ្នាក្នុង Avail។","openFeed":"បើកព័ត៌មាន","openInApp":"បើកក្នុងកម្មវិធី","writeSeller":"ផ្ញើសារទៅអ្នកលក់លើគេហទំព័រ","aiNote":"សរសេរជាភាសារបស់អ្នក — Avail បកប្រែជូនអ្នកលក់។","descT":"ការពិពណ៌នា","errT":"មិនអាចផ្ទុកការផ្សាយបានទេ","errD":"សូមពិនិត្យអ៊ីនធឺណិត ហើយព្យាយាមម្ដងទៀត។","retry":"ព្យាយាមម្ដងទៀត"}};
 const SUPA = "https://paikboidnrgthyxpwdrk.supabase.co";
 const ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBhaWtib2lkbnJndGh5eHB3ZHJrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0OTM2NDksImV4cCI6MjA5NjA2OTY0OX0.4RcHFtSg1lxytBEk4HrWaN_dtmshcTfVWd2VVf8LaO4";
 const $ = s => document.querySelector(s);
@@ -153,32 +161,59 @@ function translated(map, fallback) {
   const key = Object.keys(map).find(k => k.toLowerCase().startsWith(lang));
   return (key && map[key]) || fallback;
 }
-const fmt = n => Number(n).toLocaleString("ru-RU").replace(/,/g, " ");
+// ru-RU уже разделяет тысячи неразрывным пробелом; копейки — через запятую.
+const fmt = n => Number(n).toLocaleString("ru-RU", { maximumFractionDigits: 2 });
 
-function show(a) {
-  const photos = Array.isArray(a.photo) ? a.photo.filter(Boolean) : [];
+// Всё, что пришло из базы, вставляем только как текст или свойство
+// элемента — никакого innerHTML (валюту и фото меняет сам продавец).
+function photoUrl(p) {
+  if (typeof p !== "string" || !p.trim()) return null;
+  try {
+    const u = new URL(p, location.href);
+    return u.protocol === "https:" || u.origin === location.origin ? u.href : null;
+  } catch (e) { return null; }
+}
+
+function show(a, appLink) {
+  const photos = (Array.isArray(a.photo) ? a.photo : []).map(photoUrl).filter(Boolean);
   const name = translated(a.translations_name, a.name || "");
   const desc = translated(a.translations_description, a.description || "");
   document.title = `${name} — Avail`;
   $("#title").textContent = name;
-  $("#price").innerHTML = a.price ? `${fmt(a.price)}<small>${a.currency || ""}</small>` : "";
+  const price = $("#price");
+  price.textContent = a.price ? fmt(a.price) : "";
+  if (a.price && a.currency) {
+    const cur = document.createElement("small");
+    cur.textContent = String(a.currency);
+    price.append(cur);
+  }
   const loc = [a.city, a.district].filter(Boolean).join(" · ") || a.location || "";
   $("#loc").textContent = loc; $("#locRow").hidden = !loc;
-  $("#desc").textContent = desc; $("#descBox").hidden = !desc.trim();
+  $("#desc").textContent = desc; $("#descBox").hidden = !String(desc).trim();
   const main = $("#mainImg");
+  const thumbs = $("#thumbs");
   const pick = i => {
     main.src = photos[i];
-    document.querySelectorAll("#thumbs button").forEach((b, j) => b.setAttribute("aria-current", String(i === j)));
+    thumbs.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-current", String(i === j)));
   };
-  $("#thumbs").innerHTML = photos.map((p, i) => `<button type="button" aria-label="${i + 1}"><img loading="lazy" src="${p}" alt=""></button>`).join("");
-  document.querySelectorAll("#thumbs button").forEach((b, i) => b.addEventListener("click", () => pick(i)));
+  thumbs.replaceChildren(...photos.map((p, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("aria-label", String(i + 1));
+    const img = document.createElement("img");
+    img.loading = "lazy"; img.alt = ""; img.src = p;
+    b.append(img);
+    b.addEventListener("click", () => pick(i));
+    return b;
+  }));
   if (photos.length) pick(0); else main.parentElement.hidden = true;
-  $("#thumbs").hidden = photos.length < 2;
-  // На телефоне с установленным Avail эта же ссылка открывает приложение
-  // (Universal Links / App Links); иначе — магазин.
+  thumbs.hidden = photos.length < 2;
+  // Веб-версия открывает это объявление по ?advert=<id>. На телефоне —
+  // магазин (из него же «Открыть», если Avail уже стоит).
   const ua = navigator.userAgent;
+  $("#writeSeller").href = appLink;
   $("#openInApp").href = /iPhone|iPad/.test(ua) ? "https://apps.apple.com/app/id6466668151"
-    : /Android/.test(ua) ? "https://play.google.com/store/apps/details?id=com.asiaavail.avail" : "../app/";
+    : /Android/.test(ua) ? "https://play.google.com/store/apps/details?id=com.asiaavail.avail" : appLink;
   $("#loading").hidden = true; $("#advert").hidden = false;
 }
 
@@ -196,17 +231,33 @@ const DEMO = {
   photo: ["../assets/img/photos/villa.jpg", "../assets/img/photos/beach.jpg", "../assets/img/photos/city.jpg"]
 };
 
-async function load() {
-  if (id === "demo") return show(DEMO);
-  if (!/^[0-9a-f-]{8,}$/i.test(id)) throw new Error("bad id");
-  const url = `${SUPA}/rest/v1/adverts?id=eq.${id}&select=id,name,description,price,currency,photo,city,district,location,translations_name,translations_description&limit=1`;
-  const r = await fetch(url, { headers: { apikey: ANON, Authorization: `Bearer ${ANON}` } });
-  if (!r.ok) throw new Error(r.status);
-  const rows = await r.json();
-  if (!rows.length) throw new Error("not found");
-  show(rows[0]);
+function state(which) {
+  $("#loading").hidden = which !== "loading";
+  $("#notfound").hidden = which !== "notfound";
+  $("#error").hidden = which !== "error";
+  if (which === "notfound") document.title = `${t("nfT")} — Avail`;
+  if (which === "error") document.title = `${t("errT")} — Avail`;
 }
-load().catch(() => { $("#loading").hidden = true; $("#notfound").hidden = false; });
+
+// «Не найдено» — только когда объявления точно нет (или оно в архиве);
+// сбой сети — отдельный экран с «Повторить».
+async function load() {
+  state("loading");
+  if (id === "demo") return show(DEMO, "../app/");
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)) return state("notfound");
+  const url = `${SUPA}/rest/v1/adverts?id=eq.${id}&select=id,status,name,description,price,currency,photo,city,district,location,translations_name,translations_description&limit=1`;
+  let rows;
+  try {
+    const r = await fetch(url, { headers: { apikey: ANON, Authorization: `Bearer ${ANON}` } });
+    if (!r.ok) throw new Error(r.status);
+    rows = await r.json();
+  } catch (e) { return state("error"); }
+  const a = rows[0];
+  if (!a || (a.status && a.status !== "active")) return state("notfound");
+  show(a, `../app/?advert=${encodeURIComponent(a.id)}`);
+}
+$("#retry").addEventListener("click", load);
+load();
 </script>
 
 </body>
