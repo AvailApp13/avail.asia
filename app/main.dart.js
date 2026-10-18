@@ -80581,7 +80581,7 @@ aqe(a){var s=null,r=this.c
 r.toString
 A.r(r,B.d,t.t).toString
 $label0$0:{if(1===a){r=t.f
-r=new A.h8(B.aor,A.e("No drafts yet",s,"webAdsEmptyDraftsTitle",A.b([],r),s),A.e(u.aU,s,"webAdsEmptyDraftsText",A.b([],r),s),A.bs(!1,B.fK,B.b7,A.e("Upload price list",s,"webFeatBulkButton",A.b([],r),s),!1,!1,new A.byF(this),!1),s)
+r=new A.h8(B.aor,A.e("No drafts yet",s,"webAdsEmptyDraftsTitle",A.b([],r),s),A.e(u.aU,s,"webAdsEmptyDraftsText",A.b([],r),s),A.bs(!1,B.fK,B.b7,A.e("Bulk upload",s,"webFeatBulkTitle",A.b([],r),s),!1,!1,new A.byF(this),!1),s)
 break $label0$0}if(2===a){r=t.f
 r=new A.h8(B.vN,A.e("The archive is empty",s,"webAdsEmptyArchiveTitle",A.b([],r),s),A.e(u.dL,s,"webAdsEmptyArchiveText",A.b([],r),s),s,s)
 break $label0$0}if(3===a){r=t.f
@@ -84590,28 +84590,30 @@ f.toString
 s=A.E(a)
 r=A.aC(a,B.E,t.l).w.a.a>=900
 q=t.f
-p=!r
-o=h.y
-n=A.bs(p,B.fK,B.b7,A.e("Upload price list",g,"webFeatBulkButton",A.b([],q),g),!1,!1,o,p)
-m=r?A.e("Place an ad",g,"placeAnAd",A.b([],q),g):A.e("Post",g,"webPlaceShort",A.b([],q),g)
-l=h.x
-k=A.bs(p,B.ea,B.aD,m,!1,!1,l,p)
+p=A.e("Bulk upload",g,"webFeatBulkTitle",A.b([],q),g)
+o=r?B.fK:g
+n=!r
+m=h.y
+l=A.bs(n,o,B.b7,p,!1,!1,m,n)
+p=r?A.e("Place an ad",g,"placeAnAd",A.b([],q),g):A.e("Post",g,"webPlaceShort",A.b([],q),g)
+o=h.x
+k=A.bs(n,B.ea,B.aD,p,!1,!1,o,n)
 if(r){p=A.b([],t.Wb)
-if(o!=null)p.push(n)
-if(l!=null)p.push(k)
+if(m!=null)p.push(l)
+if(o!=null)p.push(k)
 o=t.p
 o=A.b([A.aI(new A.eZ(h.galb(),A.eI(new A.ka(new A.BE(B.bB6,A.ab(A.b([new A.dT(new A.buW(h,f,A.b([new A.a4(A.e("Home",g,"webTabHome",A.b([],q),g),new A.buX(a)),new A.a4(A.e("My account",g,"webCabTitle",A.b([],q),g),new A.buY(a)),new A.a4(A.e("My ads",g,"myAds",A.b([],q),g),g)],t.yW),p),g),B.be,h.c],o),B.t,g,B.h,B.i,g),g),1280,28,48,g),B.v,g,B.x,B.K,B.al,g,g,g,!1,B.W),g,t.WA),1)],o)
 f=h.w
 if(f!=null)o.push(new A.I_(f,g))
 return A.fS(g,s.fy,A.ab(o,B.j,g,B.h,B.i,g),g,!1,g,g,g)}f=t.p
 p=A.b([],f)
-m=l==null
-if(!m||o!=null){l=A.b([],f)
-m=!m
-if(m)l.push(A.aI(k,1))
-if(m&&o!=null)l.push(B.bd)
-if(o!=null)l.push(A.aI(n,1))
-B.b.B(p,A.b([A.ad(l,B.j,g,B.h,B.i,g),B.a8],f))}j=h.bbB(a)
+o=o==null
+if(!o||m!=null){n=A.b([],f)
+o=!o
+if(o)n.push(A.aI(k,1))
+if(o&&m!=null)n.push(B.bd)
+if(m!=null)n.push(A.aI(l,1))
+B.b.B(p,A.b([A.ad(n,B.j,g,B.h,B.i,g),B.a8],f))}j=h.bbB(a)
 if(j!=null)B.b.B(p,A.b([j,B.ax],f))
 p.push(h.c)
 i=A.eI(new A.ka(A.ab(p,B.t,g,B.h,B.i,g),1280,28,48,g),B.v,g,B.x,B.K,B.al,g,B.fw,g,!1,B.W)
