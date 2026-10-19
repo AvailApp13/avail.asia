@@ -60,6 +60,7 @@ main{padding-block:28px 64px}
 .info h1{font:800 clamp(22px,2.4vw,30px)/1.15 var(--display);margin:0;text-wrap:balance;overflow-wrap:anywhere;hyphens:auto}
 .price{font:800 30px/1 var(--body);font-variant-numeric:tabular-nums}
 .price small{font-size:14px;color:var(--muted);margin-left:4px}
+.approx{margin-top:-8px;color:var(--muted);font-size:14.5px;font-weight:600;font-variant-numeric:tabular-nums}
 .loc{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:14.5px}
 .loc svg{width:18px;height:18px;flex:none}
 .actions{display:grid;gap:10px}
@@ -118,6 +119,7 @@ footer{padding-block:24px 48px;color:var(--muted);font-size:13.5px;text-align:ce
       <aside class="info">
         <h1 id="title"></h1>
         <div class="price" id="price"></div>
+        <div class="approx" id="approx" hidden></div>
         <div class="loc" id="locRow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span id="loc"></span></div>
         <div class="actions">
           <a class="btn btn-grad" id="openInApp" href="#" data-i="openInApp">Открыть в приложении</a>
@@ -174,6 +176,39 @@ function photoUrl(p) {
   } catch (e) { return null; }
 }
 
+/* «≈ в валюте языка» под ценой — как в приложении. Курсы за 1 USD из
+   currency_rates; если база недоступна — запасной снимок. */
+const LANG_CUR = { ru: "RUB", en: "USD", th: "", zh: "CNY", vi: "VND", id: "IDR", ms: "MYR", km: "USD" };
+const NUM_LOCALE = { ru: "ru-RU", en: "en-US", th: "th-TH", zh: "zh-CN", vi: "vi-VN", id: "id-ID", ms: "ms-MY", km: "en-US" };
+let RATES = { USD: 1, THB: 33.43, RUB: 83.77, CNY: 6.698, VND: 25869, IDR: 18015, MYR: 4.082, KHR: 4060, EUR: 0.8895 };
+let current = null;
+function renderApprox() {
+  const el = $("#approx");
+  const to = LANG_CUR[lang];
+  const from = String(current?.currency || "").toUpperCase();
+  let text = "";
+  if (current && current.price && to && from && from !== to && RATES[from] && RATES[to]) {
+    const v = Number(current.price) / RATES[from] * RATES[to];
+    // Крупные суммы — до 3 значащих цифр, мелкие — без копеек ($87, а не $86.7).
+    const opts = v >= 1000 ? { maximumSignificantDigits: 3 } : { maximumFractionDigits: 0 };
+    try {
+      text = "≈ " + new Intl.NumberFormat(NUM_LOCALE[lang] || "en-US",
+        { style: "currency", currency: to, ...opts }).format(v);
+    } catch (e) { text = ""; }
+  }
+  el.textContent = text;
+  el.hidden = !text;
+}
+(async () => {
+  try {
+    const r = await fetch(`${SUPA}/rest/v1/currency_rates?select=quote,rate`, { headers: { apikey: ANON, Authorization: `Bearer ${ANON}` } });
+    if (!r.ok) return;
+    const next = {};
+    (await r.json()).forEach(x => { const v = Number(x.rate); if (x.quote && v > 0) next[String(x.quote).toUpperCase()] = v; });
+    if (next.USD) { RATES = { ...RATES, ...next }; renderApprox(); }
+  } catch (e) { /* запасной снимок */ }
+})();
+
 function show(a, appLink) {
   const photos = (Array.isArray(a.photo) ? a.photo : []).map(photoUrl).filter(Boolean);
   const name = translated(a.translations_name, a.name || "");
@@ -187,6 +222,8 @@ function show(a, appLink) {
     cur.textContent = String(a.currency);
     price.append(cur);
   }
+  current = a;
+  renderApprox();
   const loc = [a.city, a.district].filter(Boolean).join(" · ") || a.location || "";
   $("#loc").textContent = loc; $("#locRow").hidden = !loc;
   $("#desc").textContent = desc; $("#descBox").hidden = !String(desc).trim();
