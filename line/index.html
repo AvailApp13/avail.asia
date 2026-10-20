@@ -1,0 +1,27 @@
+<!doctype html>
+<!-- Возврат со входа через LINE (сайт). LINE присылает сюда браузер с
+     ?code=…&state=… (или ?error=…). Сразу уводим в веб-приложение под
+     другими именами — line_code/line_state/line_error: параметры code и
+     error перехватил бы вход Supabase. replace — чтобы одноразовый код не
+     остался в истории «Назад». Адрес https://avail.asia/line/ прописан в
+     консоли LINE (Callback URL) и в line-auth (REDIRECTS). -->
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'">
+<title>Avail</title>
+<style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font:16px system-ui,sans-serif;color:#555;background:#fff}a{color:#06C755}</style>
+<script>
+(function () {
+  var p = new URLSearchParams(location.search), q = new URLSearchParams();
+  // Коды ошибок LINE бывают и заглавными (ACCESS_DENIED) — приводим к строчным.
+  var code = p.get("code") || "", state = p.get("state") || "", err = (p.get("error") || "").toLowerCase();
+  if (code && code.length <= 1024) q.set("line_code", code);
+  else if (code || err) q.set("line_error", /^[a-z_]{1,64}$/.test(err) ? err : "unknown");
+  if (q.toString() && state && state.length <= 256) q.set("line_state", state);
+  var s = q.toString();
+  location.replace("/app/" + (s ? "?" + s : ""));
+})();
+</script></head>
+<body><noscript><a href="/app/">Avail</a></noscript></body></html>
