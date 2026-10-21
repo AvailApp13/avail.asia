@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["F2MD3735EJ.com.avail.avail"],
+        "components": [
+          { "/": "/a/" },
+          { "/": "/a/*" }
+        ],
+        "appID": "F2MD3735EJ.com.avail.avail",
+        "paths": ["/a/", "/a/*"]
+      }
+    ]
+  }
+}

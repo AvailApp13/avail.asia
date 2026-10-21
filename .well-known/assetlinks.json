@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.asiaavail.avail",
+      "sha256_cert_fingerprints": [
+        "22:46:36:F2:53:B6:0C:3A:54:CB:EE:CD:3A:57:86:34:C6:7A:0C:D3:28:C5:48:CF:54:10:D4:43:0C:70:28:D4"
+      ]
+    }
+  }
+]
