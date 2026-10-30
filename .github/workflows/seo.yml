@@ -1,0 +1,48 @@
+# Страницы avail.asia под поиск — каждую ночь (03:17 по Бангкоку).
+# Лежит в репозитории сайта AvailApp13/avail.asia как
+# .github/workflows/seo.yml; источник — avail.app: site/seo/seo.yml
+# (build_landing.py --dist кладёт его сюда сам).
+name: seo
+
+on:
+  schedule:
+    - cron: "17 20 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: seo
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Собрать страницы из объявлений
+        run: python3 seo/build_seo.py . --ping
+      - name: Сохранить изменения
+        id: save
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Без изменений"
+            echo "changed=0" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -q -m "Страницы под поиск: $(date -u +%F)"
+          git push -q
+          echo "changed=1" >> "$GITHUB_OUTPUT"
+      - name: Обновить сайт (GitHub Pages)
+        if: steps.save.outputs.changed == '1'
+        run: |
+          curl -sS -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" || true
