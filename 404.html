@@ -2,6 +2,12 @@
 <html lang="ru"><head><meta charset="utf-8"><title>Avail</title>
 <meta name="robots" content="noindex">
 <script>
-var m = location.pathname.match(/\/a\/([0-9a-fA-F-]{8,})/);
-location.replace(m ? "/a/?id=" + m[1] : "/");
+var path = location.pathname;
+var q = location.search ? "&" + location.search.slice(1) : "";
+var i = path.match(/^\/i\/([0-9A-Za-z-]{3,32})\/?$/);
+var p = path.match(/^\/p\/([A-Za-z0-9-]{3,32})\/?$/);
+var m = path.match(/\/a\/([0-9a-fA-F-]{8,})/);
+var u = path.match(/^\/u\/([A-Za-z0-9._-]+)$/);
+location.replace(i ? "/i/?k=" + i[1] + q : p ? "/p/?k=" + p[1] + q
+  : m ? "/a/?id=" + m[1] : u ? "/u/?t=" + u[1] : "/");
 </script></head><body></body></html>

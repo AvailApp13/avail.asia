@@ -1,0 +1,48 @@
+<!doctype html>
+<!-- Согласие партнёра на загрузку объявлений командой Avail
+     (CRM, этап 9; docs/crm/phase5_contract.md §11.5). Пока заглушка:
+     «Эта страница заработает позже» на 8 языках. Ни запросов к серверу, ни
+     форм. Адрес https://avail.asia/consent/?k=<код> уже зарезервирован.
+     Скрипт — отдельным файлом consent.js (CSP без встроенных скриптов),
+     тексты — только через textContent. Не индексируется. -->
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src https://paikboidnrgthyxpwdrk.supabase.co; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<title>Avail</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Avail">
+<meta property="og:title" content="Avail — бесплатные объявления на Пхукете">
+<meta property="og:description" content="Free classifieds in Phuket · ประกาศฟรีในภูเก็ต">
+<meta property="og:image" content="https://avail.asia/assets/img/og.jpg">
+<link rel="icon" type="image/png" href="../assets/img/logo.png">
+<link rel="stylesheet" href="../i/ref.css">
+<script src="consent.js" defer></script>
+</head>
+<body>
+<div class="page">
+<header class="top">
+  <a class="brand" href="/"><img src="../assets/img/logo.png" alt="" width="30" height="30"><span>Avail</span></a>
+  <label class="lang"><span class="sr" id="lang_label">Язык</span>
+    <select id="lang">
+      <option value="ru">Русский</option>
+      <option value="en">English</option>
+      <option value="th">ไทย</option>
+      <option value="zh">中文</option>
+      <option value="vi">Tiếng Việt</option>
+      <option value="id">Indonesia</option>
+      <option value="ms">Melayu</option>
+      <option value="km">ខ្មែរ</option>
+    </select>
+  </label>
+</header>
+<main id="main" aria-live="polite">
+  <span class="badge" id="badge"></span>
+  <h1 id="title">Avail</h1>
+  <p class="lead" id="text"></p>
+  <a class="btn btn-sec" id="home" href="/"></a>
+  <noscript><p>This page will start working later. · Эта страница заработает позже.</p></noscript>
+</main>
+</div>
+</body></html>
