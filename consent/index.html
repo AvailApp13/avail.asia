@@ -1,10 +1,13 @@
 <!doctype html>
-<!-- Согласие партнёра на загрузку объявлений командой Avail
-     (CRM, этап 9; docs/crm/phase5_contract.md §11.5). Пока заглушка:
-     «Эта страница заработает позже» на 8 языках. Ни запросов к серверу, ни
-     форм. Адрес https://avail.asia/consent/?k=<код> уже зарезервирован.
-     Скрипт — отдельным файлом consent.js (CSP без встроенных скриптов),
-     тексты — только через textContent. Не индексируется. -->
+<!-- Согласие партнёра на загрузку объявлений командой Avail (CRM, этап 9;
+     docs/crm/phase9_contract.md §13, текст §16.3 — на утверждении владельца).
+     Ссылка от сотрудника: https://avail.asia/consent/?k=<код>. Партнёр
+     входит в свой аккаунт Avail (веб-версия /app/ на этом же сайте) и
+     нажимает «Разрешаю»; здесь можно и отозвать разрешение. Страница только
+     ЧИТАЕТ вход веб-версии (никогда не обновляет и не записывает его — иначе
+     веб-версия разлогинится). Скрипты — отдельными файлами (CSP без
+     встроенных скриптов), тексты — только через textContent. Не
+     индексируется, без внешних шрифтов и счётчиков. -->
 <html lang="ru"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
@@ -18,12 +21,14 @@
 <meta property="og:image" content="https://avail.asia/assets/img/og.jpg">
 <link rel="icon" type="image/png" href="../assets/img/logo.png">
 <link rel="stylesheet" href="../i/ref.css">
+<link rel="stylesheet" href="consent.css">
+<script src="consent_texts.js" defer></script>
 <script src="consent.js" defer></script>
 </head>
 <body>
 <div class="page">
 <header class="top">
-  <a class="brand" href="/"><img src="../assets/img/logo.png" alt="" width="30" height="30"><span>Avail</span></a>
+  <a class="brand" href="/" id="brand"><img src="../assets/img/logo.png" alt="" width="30" height="30"><span>Avail</span></a>
   <label class="lang"><span class="sr" id="lang_label">Язык</span>
     <select id="lang">
       <option value="ru">Русский</option>
@@ -37,12 +42,85 @@
     </select>
   </label>
 </header>
+
 <main id="main" aria-live="polite">
-  <span class="badge" id="badge"></span>
-  <h1 id="title">Avail</h1>
-  <p class="lead" id="text"></p>
-  <a class="btn btn-sec" id="home" href="/"></a>
-  <noscript><p>This page will start working later. · Эта страница заработает позже.</p></noscript>
+  <section id="s_loading">
+    <p class="muted" id="loading_text">…</p>
+  </section>
+
+  <section id="s_nolink" hidden>
+    <h1 id="nolink_title"></h1>
+    <p class="lead" id="nolink_text"></p>
+    <a class="btn btn-sec" id="nolink_home" href="/"></a>
+  </section>
+
+  <section id="s_signin" hidden>
+    <h1 id="signin_title"></h1>
+    <p class="lead" id="signin_text"></p>
+    <a class="btn btn-primary" id="signin_btn" href="/app/#/home/profile/login" target="_blank" rel="noopener"></a>
+    <p class="small muted center" id="signin_hint"></p>
+  </section>
+
+  <section id="s_pending" hidden>
+    <h1 id="pending_title"></h1>
+    <p class="lead" id="intro"><span id="intro_a"></span><b id="company"></b><span id="intro_b"></span></p>
+    <ul class="points">
+      <li id="p1"></li><li id="p2"></li><li id="p3"></li><li id="p4"></li><li id="p5"></li><li id="p6"></li>
+    </ul>
+    <p class="small muted" id="privacy_line"><span id="privacy_a"></span><a id="privacy_link" href="/legal/privacy/" target="_blank" rel="noopener"></a><span id="privacy_b"></span></p>
+    <label class="agree" for="agree"><input type="checkbox" id="agree"><span id="agree_text"></span></label>
+    <button type="button" class="btn btn-primary" id="allow" disabled></button>
+    <p class="msg" id="pending_msg" role="alert" hidden></p>
+  </section>
+
+  <section id="s_given" hidden>
+    <div class="done-head"><span class="chk" aria-hidden="true">✓</span>
+      <div><h1 id="given_title"></h1><p id="given_text"></p></div></div>
+    <p class="note" id="given_date" hidden></p>
+    <button type="button" class="btn btn-sec" id="revoke" hidden></button>
+    <div class="card confirm" id="revoke_box" hidden>
+      <p id="revoke_q"></p>
+      <button type="button" class="btn btn-danger" id="revoke_yes"></button>
+      <button type="button" class="btn btn-sec" id="revoke_no"></button>
+    </div>
+    <p class="msg" id="given_msg" role="alert" hidden></p>
+  </section>
+
+  <section id="s_closed" hidden>
+    <h1 id="closed_title"></h1>
+    <p class="lead" id="closed_text"></p>
+    <a class="btn btn-sec" id="closed_home" href="/"></a>
+  </section>
+
+  <section id="s_wrong" hidden>
+    <h1 id="wrong_title"></h1>
+    <p class="lead" id="wrong_text"></p>
+    <a class="btn btn-primary" id="wrong_btn" href="/app/#/home/profile/login" target="_blank" rel="noopener"></a>
+    <p class="small muted center" id="wrong_hint"></p>
+  </section>
+
+  <section id="s_invalid" hidden>
+    <h1 id="invalid_title"></h1>
+    <p class="lead" id="invalid_text"></p>
+    <a class="btn btn-sec" id="invalid_home" href="/"></a>
+  </section>
+
+  <section id="s_blocked" hidden>
+    <h1 id="blocked_title"></h1>
+    <p class="lead" id="blocked_text"></p>
+  </section>
+
+  <section id="s_error" hidden>
+    <h1 id="error_title"></h1>
+    <p class="lead" id="error_text"></p>
+    <button type="button" class="btn btn-primary" id="retry"></button>
+  </section>
+
+  <noscript><p>Please turn on JavaScript to open this page. · Включите JavaScript, чтобы открыть эту страницу.</p></noscript>
 </main>
+
+<footer>
+  <p class="small muted center"><a id="terms" href="/legal/terms/"></a> · <a id="privacy" href="/legal/privacy/"></a></p>
+</footer>
 </div>
 </body></html>

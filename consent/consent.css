@@ -1,0 +1,11 @@
+/* Страница согласия партнёра /consent/ (CRM, этап 9). Основа — ../i/ref.css
+   (те же кнопки, шапка, шрифты); здесь — только своё. */
+.points { margin: 0 0 14px; padding-left: 20px; color: #3d3a48; }
+.points li { margin: 0 0 8px; }
+#company { color: var(--fg); overflow-wrap: anywhere; }
+.agree { display: flex; gap: 12px; align-items: flex-start; margin: 4px 0 16px; padding: 14px;
+         border: 1px solid var(--line); border-radius: 14px; background: var(--soft); cursor: pointer; font-weight: 600; }
+.agree input { flex: none; width: 22px; height: 22px; margin: 1px 0 0; accent-color: #8A5CF6; }
+.btn[disabled] { opacity: .45; box-shadow: none; cursor: not-allowed; }
+.btn-danger { background: #b42318; color: #fff; }
+.confirm p { margin: 0 0 14px; }
