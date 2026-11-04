@@ -10,6 +10,9 @@
 // сайту, с которого пришли. Счётчик не задерживает переход дольше 0,4 с.
 // В Google Play источник уходит меткой referrer — в Play Console видно,
 // сколько установок пришло из TikTok и т. д.
+// Метка Meta (fbclid — переходы из Facebook/Instagram) уходит в счётчик
+// отдельно: сервер передаёт такие переходы в Meta Conversions API, чтобы
+// видеть, какая реклама приводит людей (миграция 0093, функция meta-capi).
 (function () {
   "use strict";
   var IOS = "https://apps.apple.com/app/id6466668151";
@@ -50,7 +53,9 @@
   var source = clean(q.get("s") || q.get("utm_source"), /^[a-z0-9_]{1,20}$/)
     || (q.get("ttclid") ? "tiktok" : "")
     || (q.get("gclid") ? "google" : "")
-    || inApp || refSource || "direct";
+    || inApp || refSource || (q.get("fbclid") ? "meta" : "") || "direct";
+  var fbclid = q.get("fbclid") || "";
+  if (!/^[A-Za-z0-9_-]{8,500}$/.test(fbclid)) fbclid = "";
   var campaign = (q.get("c") || q.get("utm_campaign") || "");
   if (!/^[A-Za-z0-9_.-]{1,40}$/.test(campaign)) campaign = "";
 
@@ -84,7 +89,7 @@
       },
       body: JSON.stringify({
         p_platform: platform, p_source: source, p_campaign: campaign || null,
-        p_paid: paid, p_in_app: inApp || null
+        p_paid: paid, p_in_app: inApp || null, p_fbclid: fbclid || null
       })
     }).then(go, go);
   } catch (e) { /* без счётчика — просто переход */ }
