@@ -535,6 +535,7 @@ def page(lang: str, path: str, title: str, desc: str, body: str, *, alternates=N
 {img}<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/assets/img/logo.png">
 <link rel="apple-touch-icon" href="/assets/img/logo.png">
+<link rel="alternate" type="text/markdown" href="/llms.txt" title="Avail — guide for AI assistants">
 <style>{CSS}</style>
 {lds}</head><body><div class="wrap">
 {body}
