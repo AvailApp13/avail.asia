@@ -95,7 +95,7 @@ CATS = {
               "id": "Tur dan ekskursi", "ms": "Lawatan", "vi": "Tour du lịch", "km": "ដំណើរកម្សាន្ត"},
 }
 GENERIC_CAT = {"ru": "Объявления", "en": "Listings", "th": "ประกาศ", "zh": "信息", "id": "Iklan",
-               "ms": "Iklan", "vi": "Tin đăng", "km": "ការផ្សាយ"}
+               "ms": "Iklan", "vi": "Tin đăng", "km": "ប្រកាស"}
 
 UI = {
     "ru": {"from": "от", "to": "до", "offers": ("предложение", "предложения", "предложений"),
@@ -146,7 +146,7 @@ UI = {
            "install": "Muat turun Avail", "home": "Avail", "desc_city": "{cats} di Phuket: {n} {offers} dengan foto dan harga. Hubungi pemilik dalam bahasa anda — Avail menterjemah.",
            "desc_list": "{title}. Foto, harga dan penerangan. Hubungi pemilik dalam bahasa anda — Avail menterjemah.",
            "months": ["Januari", "Februari", "Mac", "April", "Mei", "Jun", "Julai", "Ogos", "September", "Oktober", "November", "Disember"]},
-    "vi": {"from": "từ", "to": "đến", "offers": ("tin", "tin", "tin"), "all": "Tất cả khu vực",
+    "vi": {"from": "từ", "to": "đến", "offers": ("tin đăng", "tin đăng", "tin đăng"), "all": "Tất cả khu vực",
            "prices": "Giá", "prices_title": "Giá ở Phuket — {month}",
            "prices_intro": "Giá thuê và mua ở Phuket theo khu vực, dựa trên tin đăng trên Avail, cập nhật mỗi đêm. Giá theo chủ nhà ghi: theo ngày hoặc theo tháng.",
            "district": "Khu vực", "count": "Tin đăng", "range": "Giá", "rooms": "phòng", "sea": "m đến biển",
@@ -154,10 +154,10 @@ UI = {
            "install": "Tải Avail", "home": "Avail", "desc_city": "{cats} ở Phuket: {n} {offers} có ảnh và giá. Nhắn chủ nhà bằng ngôn ngữ của bạn — Avail sẽ dịch.",
            "desc_list": "{title}. Ảnh, giá và mô tả. Nhắn chủ nhà bằng ngôn ngữ của bạn — Avail sẽ dịch.",
            "months": ["tháng 1", "tháng 2", "tháng 3", "tháng 4", "tháng 5", "tháng 6", "tháng 7", "tháng 8", "tháng 9", "tháng 10", "tháng 11", "tháng 12"]},
-    "km": {"from": "ចាប់ពី", "to": "ដល់", "offers": ("ការផ្តល់ជូន", "ការផ្តល់ជូន", "ការផ្តល់ជូន"), "all": "តំបន់ទាំងអស់",
+    "km": {"from": "ចាប់ពី", "to": "ដល់", "offers": ("ប្រកាស", "ប្រកាស", "ប្រកាស"), "all": "តំបន់ទាំងអស់",
            "prices": "តម្លៃ", "prices_title": "តម្លៃនៅភូកេត — {month}",
-           "prices_intro": "តម្លៃជួល និងទិញនៅភូកេតតាមតំបន់ ផ្អែកលើការផ្សាយក្នុង Avail ធ្វើបច្ចុប្បន្នភាពរៀងរាល់យប់។ តម្លៃតាមម្ចាស់កំណត់៖ ក្នុងមួយថ្ងៃ ឬក្នុងមួយខែ។",
-           "district": "តំបន់", "count": "ការផ្សាយ", "range": "តម្លៃ", "rooms": "បន្ទប់", "sea": "ម ដល់សមុទ្រ",
+           "prices_intro": "តម្លៃជួល និងទិញនៅភូកេតតាមតំបន់ ផ្អែកលើប្រកាសក្នុង Avail ធ្វើបច្ចុប្បន្នភាពរៀងរាល់យប់។ តម្លៃតាមម្ចាស់កំណត់៖ ក្នុងមួយថ្ងៃ ឬក្នុងមួយខែ។",
+           "district": "តំបន់", "count": "ប្រកាស", "range": "តម្លៃ", "rooms": "បន្ទប់", "sea": "ម ដល់សមុទ្រ",
            "open": "បើកក្នុង Avail", "write": "ផ្ញើសារទៅម្ចាស់ — Avail បកប្រែជាភាសារបស់គេ",
            "install": "ទាញយក Avail", "home": "Avail", "desc_city": "{cats} នៅភូកេត៖ {n} {offers} មានរូបភាព និងតម្លៃ។ ផ្ញើសារទៅម្ចាស់ជាភាសារបស់អ្នក — Avail បកប្រែ។",
            "desc_list": "{title}។ រូបភាព តម្លៃ និងការពិពណ៌នា។ ផ្ញើសារទៅម្ចាស់ជាភាសារបស់អ្នក — Avail បកប្រែ។",
@@ -522,6 +522,84 @@ def plural(lang: str, n: int) -> str:
 # Срок цены (specifications.pricePeriod) → код единицы UN/CEFACT для разметки.
 PERIOD_UNIT = {"hour": "HUR", "day": "DAY", "week": "WEE", "month": "MON", "year": "ANN"}
 
+# Срок цены, если автор не выбрал его полем: из описания самого автора
+# («Цены аренды: 1 месяц — 13 000 ฿/мес», «2к бат в сутки»). Есть и
+# месячная, и суточная цена — срок не пишем: неясно, к какой относится цена
+# объявления. Решение владельца 06.11.2026 (вариант Б).
+MONTH_RE = re.compile(r"(/\s*мес|в\s+месяц|на\s+месяц|помесячн|per\s+month|/\s*month|/\s*mo\b|monthly|ต่อเดือน|"
+                      r"/\s*เดือน|เดือนละ|每月|/\s*月|月租|per\s+bulan|/\s*bulan|sebulan|/\s*tháng|mỗi\s+tháng)", re.I)
+DAY_RE = re.compile(r"(в\s+сутки|в\s+день|/\s*сутки|/\s*день|/\s*ночь|посуточн|per\s+(day|night)|"
+                    r"/\s*(day|night)\b|daily|nightly|ต่อวัน|/\s*วัน|ต่อคืน|รายวัน|每天|每晚|/\s*天|/\s*晚|日租|"
+                    r"per\s+hari|/\s*hari|sehari|/\s*ngày|mỗi\s+đêm|/\s*đêm)", re.I)
+
+PER = {
+    "month": {"ru": "/мес", "en": "/mo", "th": "/เดือน", "zh": "/月", "id": "/bln", "ms": "/bulan", "vi": "/tháng", "km": "/ខែ"},
+    "day": {"ru": "/сутки", "en": "/day", "th": "/วัน", "zh": "/天", "id": "/hari", "ms": "/hari", "vi": "/ngày", "km": "/ថ្ងៃ"},
+    "week": {"ru": "/нед.", "en": "/wk", "th": "/สัปดาห์", "zh": "/周", "id": "/minggu", "ms": "/minggu", "vi": "/tuần", "km": "/សប្តាហ៍"},
+    "year": {"ru": "/год", "en": "/yr", "th": "/ปี", "zh": "/年", "id": "/thn", "ms": "/tahun", "vi": "/năm", "km": "/ឆ្នាំ"},
+    "hour": {"ru": "/час", "en": "/hr", "th": "/ชม.", "zh": "/小时", "id": "/jam", "ms": "/jam", "vi": "/giờ", "km": "/ម៉ោង"},
+}
+
+
+def price_period(a: dict) -> str:
+    p = str((a.get("specifications") or {}).get("pricePeriod") or "")
+    if p in PERIOD_UNIT:
+        return p
+    d = a.get("description") or ""
+    m, dd = bool(MONTH_RE.search(d)), bool(DAY_RE.search(d))
+    return "month" if m and not dd else "day" if dd and not m else ""
+
+
+def price_text(a: dict, lang: str) -> str:
+    p, cur = price_of(a)
+    if not p:
+        return ""
+    return money(p, cur) + PER.get(price_period(a), {}).get(lang, "")
+
+
+def month_prices(xs: list) -> list:
+    """Цены за месяц в батах — для сводок и «от … /мес» в заголовках."""
+    out = []
+    for a in xs:
+        p, cur = price_of(a)
+        if p and cur == "THB" and price_period(a) == "month":
+            out.append(p)
+    return sorted(out)
+
+
+# Сводка на страницах раздела и района (вариант Б): сколько предложений с
+# ценой за месяц, разброс, середина и сколько до 20/30/50 тысяч бат.
+SUMMARY = {
+    "ru": ("{where}: {n} {offers} с ценой за месяц — от {min} до {max}. Половина — не дороже {med}.", "до", "Обновлено"),
+    "en": ("{where}: {n} {offers} priced per month, from {min} to {max}. Half of them cost {med} or less.", "up to", "Updated"),
+    "th": ("{where}: {n} {offers}ที่ระบุราคาต่อเดือน ตั้งแต่ {min} ถึง {max} ครึ่งหนึ่งราคาไม่เกิน {med}", "ไม่เกิน", "อัปเดตล่าสุด"),
+    "zh": ("{where}：{n} {offers}按月计价的信息，价格从 {min} 到 {max}，其中一半不超过 {med}。", "不超过", "更新于"),
+    "id": ("{where}: {n} {offers} dengan harga per bulan, dari {min} hingga {max}. Separuhnya tidak lebih dari {med}.", "hingga", "Diperbarui"),
+    "ms": ("{where}: {n} {offers} dengan harga bulanan, dari {min} hingga {max}. Separuh daripadanya berharga {med} ke bawah.", "sehingga", "Dikemas kini"),
+    "vi": ("{where}: {n} {offers} có giá theo tháng, từ {min} đến {max}. Một nửa có giá không quá {med}.", "không quá", "Cập nhật ngày"),
+    "km": ("{where}៖ {offers}ចំនួន {n} ដែលមានតម្លៃប្រចាំខែ ចាប់ពី {min} ដល់ {max}។ ពាក់កណ្តាលមានតម្លៃមិនលើស {med}។", "មិនលើស", "បានធ្វើបច្ចុប្បន្នភាព"),
+}
+
+
+def summary_html(xs: list, lang: str, where: str, now: datetime.datetime) -> str:
+    ps = month_prices(xs)
+    if len(ps) < 2:
+        return ""
+    text, upto, updated = SUMMARY[lang]
+    per = PER["month"][lang]
+
+    def m(x):  # «45 000 ฿/мес» не разрывается по строкам
+        return money(x, "THB").replace(" ", "\u00a0")
+
+    line = text.format(where=where, n=len(ps), offers=plural(lang, len(ps)), min=m(ps[0]),
+                       max=m(ps[-1]) + per, med=m(ps[(len(ps) - 1) // 2]) + per)
+    steps = " · ".join(f"{upto}\u00a0{m(t)}{per}\u00a0— {sum(1 for p in ps if p <= t)}"
+                       for t in (20000, 30000, 50000))
+    date = (now.strftime("%Y-%m-%d") if lang == "zh" else f"{now.day} {now.strftime('%b %Y')}" if lang == "en"
+            else now.strftime("%d.%m.%Y"))
+    return (f'<div class="sum"><p>{esc(line)}</p>'
+            f'<p class="m">{esc(steps)}</p><p class="m">{esc(updated)} {esc(date)}</p></div>')
+
 
 def offer_props(a: dict) -> list:
     """Характеристики объявления для разметки: комнаты, площадь, до моря."""
@@ -572,6 +650,7 @@ h1{font-size:28px;line-height:1.2;margin:4px 0 8px}.lead{color:var(--muted);marg
 table{width:100%;border-collapse:collapse;margin:8px 0 24px}th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:600;font-size:13px}
 .photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin:12px 0}.photos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;background:var(--raised)}
 .desc{white-space:pre-line;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px}
+.sum{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:0 0 18px}.sum p{margin:0 0 4px}
 footer{color:var(--muted);font-size:13px;padding:28px 0;border-top:1px solid var(--line);margin-top:32px}
 @media(max-width:520px){h1{font-size:23px}.grid{grid-template-columns:1fr 1fr;gap:10px}.card .b{padding:8px}.price{font-size:16px}}"""
 
@@ -631,12 +710,11 @@ def cta(lang: str, open_url: str = "/app/") -> str:
 
 
 def card(a: dict, lang: str) -> str:
-    p, cur = price_of(a)
     photo = (a.get("photo") or [""])[0]
     name = tr(a, "name", lang)
     meta = " · ".join(x for x in (district_name(a.get("district") or "", lang), specs_line(a, lang)) if x)
     return (f'<a class="card" href="{ad_path(a, lang)}"><img loading="lazy" src="{esc(photo)}" alt="{esc(name)}">'
-            f'<div class="b"><div class="price">{esc(money(p, cur)) if p else ""}</div>'
+            f'<div class="b"><div class="price">{esc(price_text(a, lang))}</div>'
             f'<div class="t">{esc(name)}</div><div class="m">{esc(meta)}</div></div></a>')
 
 
@@ -738,8 +816,10 @@ def build(out: str, ads: list, now: datetime.datetime, local: dict = None) -> di
                 c_ads = [a for k, v in groups.items() if k[0] == city and k[1] == c for a in v]
                 dists = sorted({k[2] for k in groups if k[0] == city and k[1] == c and k[2]},
                                key=lambda d: (-len(groups[(city, c, d)]), d))
+                mps = month_prices(c_ads)
                 prices = [p for p, _ in (price_of(a) for a in c_ads) if p]
-                pmin = money(min(prices), "THB") if prices else ""
+                pmin = (money(mps[0], "THB") + PER["month"][lang] if mps
+                        else money(min(prices), "THB") if prices else "")
                 title = f"{clabel} — {cname}: {len(c_ads)} {plural(lang, len(c_ads))}" + (f" {u['from']} {pmin}" if pmin else "")
                 desc = u["desc_list"].format(title=title)
                 trail = [home, (cname, base), (clabel, cpath)]
@@ -748,6 +828,7 @@ def build(out: str, ads: list, now: datetime.datetime, local: dict = None) -> di
                     for d in dists))
                 body = (header(lang, {l: f"/{l}/{cs}/{c}/" for l in LANGS}) + crumbs_html(trail)
                         + f"<h1>{esc(clabel)} — {esc(cname)}</h1><p class='lead'>{esc(desc)}</p>"
+                        + summary_html(c_ads, lang, cname, now)
                         + f'<div class="chips">{chips}</div><div class="grid">'
                         + "".join(card(a, lang) for a in c_ads[:120]) + "</div>" + cta(lang))
                 put(cpath, page(lang, cpath, title, desc, body, alternates={l: f"/{l}/{cs}/{c}/" for l in LANGS},
@@ -759,9 +840,12 @@ def build(out: str, ads: list, now: datetime.datetime, local: dict = None) -> di
                     d_ads = groups[(city, c, d)]
                     dname = district_name(d, lang)
                     dpath = f"{cpath}{slug(d)}/"
+                    mps = month_prices(d_ads)
                     ps = [p for p, _ in (price_of(a) for a in d_ads) if p]
+                    dmin = (money(mps[0], "THB") + PER["month"][lang] if mps
+                            else money(min(ps), "THB") if ps else "")
                     title = (f"{clabel} — {dname}, {cname}: {len(d_ads)} {plural(lang, len(d_ads))}"
-                             + (f" {u['from']} {money(min(ps), 'THB')}" if ps else ""))
+                             + (f" {u['from']} {dmin}" if dmin else ""))
                     desc = u["desc_list"].format(title=title)
                     trail = [home, (cname, base), (clabel, cpath), (dname, dpath)]
                     others = "".join(
@@ -769,6 +853,7 @@ def build(out: str, ads: list, now: datetime.datetime, local: dict = None) -> di
                         for x in dists if x != d)
                     body = (header(lang, {l: f"/{l}/{cs}/{c}/{slug(d)}/" for l in LANGS}) + crumbs_html(trail)
                             + f"<h1>{esc(clabel)} — {esc(dname)}, {esc(cname)}</h1><p class='lead'>{esc(desc)}</p>"
+                            + summary_html(d_ads, lang, dname, now)
                             + '<div class="grid">' + "".join(card(a, lang) for a in d_ads) + "</div>"
                             + f'<div class="chips" style="margin-top:20px">{others}</div>' + cta(lang))
                     put(dpath, page(lang, dpath, title, desc, body,
@@ -822,8 +907,11 @@ def build(out: str, ads: list, now: datetime.datetime, local: dict = None) -> di
             dname = district_name(district, lang) if district else ""
             clabel = CATS.get(a["_cat"], GENERIC_CAT)[lang]
             place = ", ".join(x for x in (dname, cname) if x)
-            title = f"{name} — {money(p, cur)}" if p else name
-            desc = " · ".join(x for x in (place, specs_line(a, lang), text[:150]) if x)
+            pt = price_text(a, lang)
+            # «Title Residence — 13 000 ฿/мес · Аренда квартир, Най Янг, Пхукет»
+            title = " · ".join(x for x in (f"{name} — {pt}" if pt else name,
+                                           ", ".join(x for x in (clabel, place) if x)) if x)
+            desc = " · ".join(x for x in (clabel, place, specs_line(a, lang), text[:150]) if x)
             trail = [(u["home"], "/"), (cname, f"/{lang}/{cs}/"), (clabel, f"/{lang}/{cs}/{a['_cat']}/")]
             if district:
                 trail.append((dname, f"/{lang}/{cs}/{a['_cat']}/{slug(district)}/"))
@@ -844,11 +932,11 @@ def build(out: str, ads: list, now: datetime.datetime, local: dict = None) -> di
                         "@type": "PostalAddress", "addressLocality": dname or cname,
                         "addressRegion": cname, "addressCountry": CITIES[city]["country"]}}}
                 # Аренда или продажа (GoodRelations), и срок цены — если автор
-                # его указал (pricePeriod); без срока не выдумываем.
+                # указал его полем или в своём описании (price_period).
                 fn = {"rent": "LeaseOut", "sale": "Sell"}.get(str(a.get("item_type") or ""))
                 if fn:
                     product["offers"]["businessFunction"] = "http://purl.org/goodrelations/v1#" + fn
-                unit = PERIOD_UNIT.get(str((a.get("specifications") or {}).get("pricePeriod") or ""))
+                unit = PERIOD_UNIT.get(price_period(a))
                 if unit:
                     product["offers"]["priceSpecification"] = {
                         "@type": "UnitPriceSpecification", "price": round(p, 2), "priceCurrency": cur,
@@ -864,7 +952,7 @@ def build(out: str, ads: list, now: datetime.datetime, local: dict = None) -> di
                     f'document.getElementById("tl").hidden=false;}})();</script>') if len(langs) > 1 else ""
             body = (header(lang, alts) + crumbs_html(trail) + hint
                     + f'<h1>{esc(name)}</h1>'
-                    f'<p class="price">{esc(money(p, cur)) if p else ""}</p><p class="m">{esc(" · ".join(x for x in (place, specs_line(a, lang)) if x))}</p>'
+                    f'<p class="price">{esc(pt)}</p><p class="m">{esc(" · ".join(x for x in (clabel, place, specs_line(a, lang)) if x))}</p>'
                     f'<div class="photos">{imgs}</div><div class="desc">{esc(text)}</div>'
                     f'<div class="cta"><a class="btn" href="{open_url}">{esc(u["write"])}</a>'
                     f'<a class="btn o" href="{APP_STORE}" rel="noopener">App Store</a>'
@@ -977,7 +1065,8 @@ def main():
         # Разово (запуск seo.yml вручную с ping_all): сообщить Bing и Яндексу
         # обо всех страницах сразу — после крупной переделки сайта.
         every = [ORIGIN + "/" + rel[: -len("index.html")] for rel in files if rel.endswith("index.html")]
-        indexnow(out, [ORIGIN + "/", ORIGIN + "/llms.txt"] + every)
+        homes = [ORIGIN + f"/{l}/" for l in LANGS if l != "ru"]  # главные на языках (build_landing.py)
+        indexnow(out, [ORIGIN + "/", ORIGIN + "/llms.txt"] + homes + every)
     elif "--ping" in sys.argv:
         indexnow(out, changed)
 
