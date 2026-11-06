@@ -1,0 +1,33 @@
+# Avail
+
+> Avail is a free classifieds app for Southeast Asia, starting in Phuket, Thailand. People post and find listings for rentals and real estate, tours and excursions, vehicles (cars, motorbikes), electronics, services and personal items. Posting a listing is free. The app is available on iPhone and Android in 8 languages: English, Thai, Russian, Chinese, Indonesian, Malay, Vietnamese and Khmer.
+
+## What the app does
+
+- Post a listing by voice: describe what you sell or rent out (about 1 minute), and AI fills in the listing fields.
+- Chat with automatic translation: buyer and seller each write in their own language; every message is translated in the chat.
+- Search by voice or in plain words, like asking a friend: "condo by the sea under 40,000".
+- Bulk upload: upload a price list file (XLSX, CSV, JSON, XML or TXT) and AI turns it into draft listings.
+- Map with listings, in-app audio calls between buyer and seller, and an approximate price in the user's own currency.
+- Optional paid promotion of listings (top placement, highlight) with in-app credits. Posting itself is free.
+
+## Download
+
+- [Download page (opens App Store or Google Play)](https://avail.asia/download)
+- [App Store (iPhone)](https://apps.apple.com/app/id6466668151)
+- [Google Play (Android)](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
+
+## Listings on the web
+
+- [Phuket: apartments for rent (English)](https://avail.asia/en/phuket/apartments-rent/)
+- [Phuket: rental prices (English)](https://avail.asia/en/phuket/prices/)
+- [Phuket overview (English)](https://avail.asia/en/phuket/)
+- [All pages (sitemap)](https://avail.asia/sitemap.xml)
+
+Each public listing has its own page at https://avail.asia/a/<id>/ with translations at https://avail.asia/<language>/a/<id>/.
+
+## Help and legal
+
+- [Support](https://avail.asia/support.html)
+- [Privacy Policy](https://avail.asia/legal/privacy/)
+- [Terms of Use](https://avail.asia/legal/terms/)
