@@ -56,6 +56,11 @@
     || inApp || refSource || (q.get("fbclid") ? "meta" : "") || "direct";
   var fbclid = q.get("fbclid") || "";
   if (!/^[A-Za-z0-9_-]{8,500}$/.test(fbclid)) fbclid = "";
+  // Метка TikTok (ttclid — переходы из рекламы TikTok): сервер передаёт такие
+  // переходы в TikTok Events API (миграция 0096, функция tiktok-events).
+  // «+» в адресе URLSearchParams превращает в пробел — возвращаем.
+  var ttclid = (q.get("ttclid") || "").replace(/ /g, "+");
+  if (!/^[A-Za-z0-9_.+\/=~-]{8,500}$/.test(ttclid)) ttclid = "";
   var campaign = (q.get("c") || q.get("utm_campaign") || "");
   if (!/^[A-Za-z0-9_.-]{1,40}$/.test(campaign)) campaign = "";
 
@@ -89,7 +94,8 @@
       },
       body: JSON.stringify({
         p_platform: platform, p_source: source, p_campaign: campaign || null,
-        p_paid: paid, p_in_app: inApp || null, p_fbclid: fbclid || null
+        p_paid: paid, p_in_app: inApp || null, p_fbclid: fbclid || null,
+        p_ttclid: ttclid || null
       })
     }).then(go, go);
   } catch (e) { /* без счётчика — просто переход */ }
