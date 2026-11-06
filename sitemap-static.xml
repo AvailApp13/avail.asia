@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 <url><loc>https://avail.asia/</loc><image:image><image:loc>https://avail.asia/assets/img/logo.png</image:loc></image:image><image:image><image:loc>https://avail.asia/assets/img/og.jpg</image:loc></image:image></url>
+<url><loc>https://avail.asia/en/</loc></url>
+<url><loc>https://avail.asia/th/</loc></url>
+<url><loc>https://avail.asia/zh/</loc></url>
+<url><loc>https://avail.asia/id/</loc></url>
+<url><loc>https://avail.asia/ms/</loc></url>
+<url><loc>https://avail.asia/vi/</loc></url>
+<url><loc>https://avail.asia/km/</loc></url>
 <url><loc>https://avail.asia/app/</loc></url>
 <url><loc>https://avail.asia/support.html</loc></url>
 <url><loc>https://avail.asia/legal/</loc></url>
