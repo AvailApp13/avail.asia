@@ -12,9 +12,12 @@ AvailApp13/avail.asia) берёт живые объявления из базы 
 - /<язык>/<город>/<раздел>/        — например «Аренда квартир, Пхукет»;
 - /<язык>/<город>/<раздел>/<район>/ — «Аренда квартир — Банг Тао, Пхукет»;
 - /<язык>/<город>/prices/          — «Цены на Пхукете» за текущий месяц;
-- /a/<id>/                         — страница каждого объявления: фото и
-  цена в превью WhatsApp/Facebook/LINE, разметка для поиска; приложение
-  открывает её само (apple-app-site-association: /a/*);
+- /a/<id>/                         — страница каждого объявления на языке
+  оригинала: фото и цена в превью WhatsApp/Facebook/LINE, разметка для
+  поиска (Product + Offer + BreadcrumbList); приложение открывает её само
+  (apple-app-site-association: /a/*);
+- /<язык>/a/<id>/                  — то же объявление в переводе (на каждый
+  язык, на который переведено название), все версии связаны hreflang;
 - sitemap-seo.xml и ключ IndexNow (сигнал Bing и Яндексу).
 
 Всё, что собрано в прошлый раз и больше не нужно (объявление сняли),
@@ -42,10 +45,12 @@ MANIFEST = ".seo-manifest.json"
 APP_STORE = "https://apps.apple.com/app/id6466668151"
 PLAY = "https://play.google.com/store/apps/details?id=com.asiaavail.avail"
 TZ = datetime.timezone(datetime.timedelta(hours=7))  # Бангкок
+LANG_NAMES = {"ru": "Русский", "en": "English", "th": "ไทย", "zh": "中文", "id": "Bahasa Indonesia",
+              "ms": "Bahasa Melayu", "vi": "Tiếng Việt", "km": "ខ្មែរ"}
 
 # ---- Справочники ----------------------------------------------------------
 
-CITIES = {"Phuket": {"slug": "phuket", "ru": "Пхукет", "en": "Phuket", "th": "ภูเก็ต",
+CITIES = {"Phuket": {"slug": "phuket", "country": "TH", "ru": "Пхукет", "en": "Phuket", "th": "ภูเก็ต",
                      "zh": "普吉岛", "id": "Phuket", "ms": "Phuket", "vi": "Phuket", "km": "ភូកេត"}}
 
 # Районы Пхукета: русские — как в справочнике CRM (0082), тайские и
@@ -209,10 +214,42 @@ def city_name(c: str, lang: str) -> str:
     return CITIES.get(c, {}).get(lang, c)
 
 
-def tr(a: dict, field: str, lang: str) -> str:
+def tr_only(a: dict, field: str, lang: str) -> str:
+    """Перевод поля на язык lang или "" — без подстановки оригинала.
+    В базе ключи переводов вида «en_US», «zh_CN» (а не «en»)."""
     t = a.get("translations_" + field) or {}
-    v = t.get(lang) if isinstance(t, dict) else None
-    return (v or a.get(field) or "").strip()
+    if not isinstance(t, dict):
+        return ""
+    v = t.get(lang) or next((x for k, x in t.items() if str(k).split("_")[0] == lang and x), "")
+    return (v or "").strip()
+
+
+def src_lang(a: dict) -> str:
+    return a.get("source_lang") if a.get("source_lang") in LANGS else "en"
+
+
+def tr(a: dict, field: str, lang: str) -> str:
+    if lang != src_lang(a):
+        v = tr_only(a, field, lang)
+        if v:
+            return v
+    return (a.get(field) or "").strip()
+
+
+def ad_langs(a: dict) -> list:
+    """Языки, на которых у объявления есть своя страница: язык оригинала и
+    те, на которые переведено название (без перевода страница была бы копией)."""
+    src = src_lang(a)
+    orig = (a.get("name") or "").strip()
+    return [l for l in LANGS if l == src or tr_only(a, "name", l) not in ("", orig)]
+
+
+def ad_path(a: dict, lang: str) -> str:
+    """Оригинал — /a/<id>/ (этот адрес открывает приложение); переводы —
+    /<язык>/a/<id>/."""
+    if lang == src_lang(a) or lang not in ad_langs(a):
+        return f"/a/{a['id']}/"
+    return f"/{lang}/a/{a['id']}/"
 
 
 def price_of(a: dict):
@@ -280,13 +317,14 @@ def esc(s) -> str:
 
 
 def page(lang: str, path: str, title: str, desc: str, body: str, *, alternates=None,
-         image: str = "", ld=None, html_lang: str = "") -> str:
+         image: str = "", ld=None, html_lang: str = "", x_default: str = "") -> str:
     url = ORIGIN + path
     alt = ""
     for l, p in (alternates or {}).items():
         alt += f'<link rel="alternate" hreflang="{l}" href="{ORIGIN}{p}">\n'
-    if alternates and DEFAULT_LANG in alternates:
-        alt += f'<link rel="alternate" hreflang="x-default" href="{ORIGIN}{alternates[DEFAULT_LANG]}">\n'
+    xd = x_default or (alternates or {}).get(DEFAULT_LANG)
+    if alternates and xd:
+        alt += f'<link rel="alternate" hreflang="x-default" href="{ORIGIN}{xd}">\n'
     lds = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>\n'
                   for x in (ld or []))
     img = f'<meta property="og:image" content="{esc(image)}">\n' if image else ""
@@ -329,14 +367,14 @@ def card(a: dict, lang: str) -> str:
     photo = (a.get("photo") or [""])[0]
     name = tr(a, "name", lang)
     meta = " · ".join(x for x in (district_name(a.get("district") or "", lang), specs_line(a, lang)) if x)
-    return (f'<a class="card" href="/a/{a["id"]}/"><img loading="lazy" src="{esc(photo)}" alt="{esc(name)}">'
+    return (f'<a class="card" href="{ad_path(a, lang)}"><img loading="lazy" src="{esc(photo)}" alt="{esc(name)}">'
             f'<div class="b"><div class="price">{esc(money(p, cur)) if p else ""}</div>'
             f'<div class="t">{esc(name)}</div><div class="m">{esc(meta)}</div></div></a>')
 
 
 def itemlist(items: list, lang: str) -> dict:
     return {"@context": "https://schema.org", "@type": "ItemList",
-            "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{ORIGIN}/a/{a['id']}/",
+            "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": ORIGIN + ad_path(a, lang),
                                  "name": tr(a, "name", lang)} for i, a in enumerate(items[:100])]}
 
 
@@ -462,41 +500,62 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
                             alternates={l: f"/{l}/{cs}/prices/" for l in LANGS}, ld=[crumbs_ld(trail)]))
             urls.append(ppath)
 
-    # Страница каждого объявления
+    # Страница каждого объявления — на языке оригинала (/a/<id>/) и на
+    # каждом языке перевода (/<язык>/a/<id>/), связаны hreflang.
     for a in ads:
-        if (a.get("city") or "") not in CITIES:
+        city = a.get("city") or ""
+        if city not in CITIES:
             continue
-        src = a.get("source_lang") if a.get("source_lang") in LANGS else "en"
+        cs = CITIES[city]["slug"]
+        langs = ad_langs(a)
+        alts = {l: ad_path(a, l) for l in langs}
         p, cur = price_of(a)
         photos = a.get("photo") or []
-        name = (a.get("name") or "").strip()
-        cname = city_name(a.get("city") or "", src)
-        dname = district_name(a.get("district") or "", src)
-        place = ", ".join(x for x in (dname, cname) if x)
-        title = f"{name} — {money(p, cur)}" if p else name
-        desc = " · ".join(x for x in (place, specs_line(a, src), (a.get("description") or "")[:150]) if x)
-        path = f"/a/{a['id']}/"
-        trans = {l: {"n": tr(a, "name", l), "d": tr(a, "description", l)} for l in LANGS}
-        ld = {"@context": "https://schema.org", "@type": "Product", "name": name,
-              "description": (a.get("description") or "")[:500], "image": photos[:5], "url": ORIGIN + path,
-              "offers": {"@type": "Offer", "price": p or 0, "priceCurrency": cur, "availability": "https://schema.org/InStock",
-                         "url": ORIGIN + path}}
+        district = a.get("district") or ""
         open_url = f"/a/?id={a['id']}"
-        imgs = "".join(f'<img loading="lazy" src="{esc(x)}" alt="{esc(name)}">' for x in photos[:10])
-        body = (f'<header><a class="logo" href="/">Avail</a></header>'
-                f'<div class="crumbs">{esc(place)}</div><h1 id="n">{esc(name)}</h1>'
-                f'<p class="price">{esc(money(p, cur)) if p else ""}</p><p class="m">{esc(specs_line(a, src))}</p>'
-                f'<div class="photos">{imgs}</div><div class="desc" id="d">{esc(a.get("description") or "")}</div>'
-                f'<div class="cta"><a class="btn" id="w" href="{open_url}">{esc(UI[src]["write"])}</a>'
-                f'<a class="btn o" href="{APP_STORE}" rel="noopener">App Store</a>'
-                f'<a class="btn o" href="{PLAY}" rel="noopener">Google Play</a></div>'
-                # Язык читателя: имя и описание из переводов объявления.
-                f'<script>(function(){{var T={json.dumps(trans, ensure_ascii=False)},W={json.dumps({l: UI[l]["write"] for l in LANGS}, ensure_ascii=False)};'
-                f'var l=(navigator.language||"en").slice(0,2);if(!T[l])return;document.documentElement.lang=l;'
-                f'if(T[l].n)document.getElementById("n").textContent=T[l].n;if(T[l].d)document.getElementById("d").textContent=T[l].d;'
-                f'document.getElementById("w").textContent=W[l];}})();</script>')
-        put(path, page(src, path, title, desc, body, image=photos[0] if photos else "", ld=[ld], html_lang=src))
-        urls.append(path)
+        for lang in langs:
+            path = alts[lang]
+            u = UI[lang]
+            name = tr(a, "name", lang)
+            text = tr(a, "description", lang)
+            cname = city_name(city, lang)
+            dname = district_name(district, lang) if district else ""
+            clabel = CATS.get(a["_cat"], GENERIC_CAT)[lang]
+            place = ", ".join(x for x in (dname, cname) if x)
+            title = f"{name} — {money(p, cur)}" if p else name
+            desc = " · ".join(x for x in (place, specs_line(a, lang), text[:150]) if x)
+            trail = [(u["home"], "/"), (cname, f"/{lang}/{cs}/"), (clabel, f"/{lang}/{cs}/{a['_cat']}/")]
+            if district:
+                trail.append((dname, f"/{lang}/{cs}/{a['_cat']}/{slug(district)}/"))
+            product = {"@context": "https://schema.org", "@type": "Product", "name": name,
+                       "description": text[:500], "image": photos[:5], "url": ORIGIN + path,
+                       "category": clabel, "productID": a["id"]}
+            if p:
+                product["offers"] = {
+                    "@type": "Offer", "price": round(p, 2), "priceCurrency": cur,
+                    "availability": "https://schema.org/InStock", "url": ORIGIN + path,
+                    "availableAtOrFrom": {"@type": "Place", "name": place, "address": {
+                        "@type": "PostalAddress", "addressLocality": dname or cname,
+                        "addressRegion": cname, "addressCountry": CITIES[city]["country"]}}}
+            imgs = "".join(f'<img loading="lazy" src="{esc(x)}" alt="{esc(name)}">' for x in photos[:10])
+            # Человеку с другим языком телефона — ссылка на его перевод
+            # (не подмена текста: поисковик должен видеть ту же страницу).
+            hint = (f'<p id="tl" class="m" hidden>🌐 <a id="tla" href="#"></a></p>'
+                    f'<script>(function(){{var A={json.dumps(alts)},N={json.dumps(LANG_NAMES, ensure_ascii=False)};'
+                    f'var l=(navigator.language||"en").slice(0,2);if(l==="{lang}"||!A[l])return;'
+                    f'var a=document.getElementById("tla");a.href=A[l];a.textContent=N[l];'
+                    f'document.getElementById("tl").hidden=false;}})();</script>') if len(langs) > 1 else ""
+            body = (header(lang, alts) + crumbs_html(trail) + hint
+                    + f'<h1>{esc(name)}</h1>'
+                    f'<p class="price">{esc(money(p, cur)) if p else ""}</p><p class="m">{esc(" · ".join(x for x in (place, specs_line(a, lang)) if x))}</p>'
+                    f'<div class="photos">{imgs}</div><div class="desc">{esc(text)}</div>'
+                    f'<div class="cta"><a class="btn" href="{open_url}">{esc(u["write"])}</a>'
+                    f'<a class="btn o" href="{APP_STORE}" rel="noopener">App Store</a>'
+                    f'<a class="btn o" href="{PLAY}" rel="noopener">Google Play</a></div>')
+            put(path, page(lang, path, title, desc, body, alternates=alts if len(langs) > 1 else None,
+                           image=photos[0] if photos else "", ld=[product, crumbs_ld(trail + [(name, path)])],
+                           x_default=f"/a/{a['id']}/"))
+            urls.append(path)
 
     stamp = now.date().isoformat()
     files["sitemap-seo.xml"] = ('<?xml version="1.0" encoding="UTF-8"?>\n'
