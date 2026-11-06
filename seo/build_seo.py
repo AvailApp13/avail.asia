@@ -239,7 +239,7 @@ LLMS_HEAD = """# Avail
 - iPhone: App Store — https://apps.apple.com/app/id6466668151
 - Android: Google Play — https://play.google.com/store/apps/details?id=com.asiaavail.avail
 - Browser version: https://avail.asia/app/
-- Not to be confused with other companies or apps named "Avail": this Avail is the classifieds app at avail.asia.
+- Not to be confused with other companies or apps named "Avail" (the Avail car rental app, Avail by Realtor.com, Avail Project): this Avail is the classifieds app at avail.asia, Android package com.asiaavail.avail.
 
 ## How to describe Avail
 
@@ -376,6 +376,55 @@ def fetch_adverts() -> list:
         offset += page
 
 
+PHOTOS_DIR = "img/a"
+PHOTOS_MANIFEST = ".seo-photos.json"
+
+
+def sync_photos(out: str, ads: list) -> dict:
+    """Первое фото каждого объявления — копией на avail.asia (img/a/<id>.jpg):
+    поисковики и ИИ-помощники лучше связывают с сайтом картинки с его же
+    адреса (фото с домена базы Google не засчитывает). Скачивается только
+    новое или сменившееся фото; копии снятых объявлений удаляются.
+    Возвращает {id: относительный путь} для удачно сохранённых."""
+    mpath = os.path.join(out, PHOTOS_MANIFEST)
+    try:
+        old = json.load(open(mpath, encoding="utf-8"))
+    except Exception:
+        old = {}
+    d = os.path.join(out, PHOTOS_DIR)
+    os.makedirs(d, exist_ok=True)
+    keep, new = {}, {}
+    for a in ads:
+        src = ((a.get("photo") or [None])[0] or "")
+        if (a.get("city") or "") not in CITIES or not src.startswith(SUPA + "/storage/"):
+            continue
+        rel = f"{PHOTOS_DIR}/{a['id']}.jpg"
+        p = os.path.join(out, rel)
+        if old.get(str(a["id"])) == src and os.path.exists(p) and os.path.getsize(p) > 0:
+            keep[a["id"]] = rel
+            new[str(a["id"])] = src
+            continue
+        try:
+            with urllib.request.urlopen(src, timeout=30) as r:
+                if not (r.headers.get("Content-Type") or "").startswith("image/jpeg"):
+                    continue
+                data = r.read(3_000_001)
+            if 0 < len(data) <= 3_000_000:
+                with open(p, "wb") as f:
+                    f.write(data)
+                keep[a["id"]] = rel
+                new[str(a["id"])] = src
+        except Exception as e:  # без копии страница возьмёт фото из базы
+            print("фото не скачалось:", a["id"], e)
+    wanted = {os.path.basename(r) for r in keep.values()}
+    for name in os.listdir(d):
+        if name not in wanted:
+            os.remove(os.path.join(d, name))
+    with open(mpath, "w", encoding="utf-8") as f:
+        json.dump(new, f, ensure_ascii=False, indent=0, sort_keys=True)
+    return keep
+
+
 def cat_slug(a: dict) -> str:
     cat, sub, kind = a.get("category") or "", (a.get("subcategory") or "").lower(), a.get("item_type") or ""
     deal = "sale" if kind in ("sale", "sell", "buy") else "rent"
@@ -470,6 +519,28 @@ def plural(lang: str, n: int) -> str:
     return many
 
 
+# Срок цены (specifications.pricePeriod) → код единицы UN/CEFACT для разметки.
+PERIOD_UNIT = {"hour": "HUR", "day": "DAY", "week": "WEE", "month": "MON", "year": "ANN"}
+
+
+def offer_props(a: dict) -> list:
+    """Характеристики объявления для разметки: комнаты, площадь, до моря."""
+    s = a.get("specifications") or {}
+    out = []
+    for key, name, unit in (("rooms", "Rooms", None), ("square", "Floor area", "MTK"),
+                            ("seaMeters", "Distance to the sea", "MTR")):
+        v = s.get(key)
+        try:
+            v = float(v)
+        except (TypeError, ValueError):
+            continue
+        x = {"@type": "PropertyValue", "name": name, "value": int(v) if v.is_integer() else v}
+        if unit:
+            x["unitCode"] = unit
+        out.append(x)
+    return out
+
+
 def specs_line(a: dict, lang: str) -> str:
     s = a.get("specifications") or {}
     parts = []
@@ -534,6 +605,8 @@ def page(lang: str, path: str, title: str, desc: str, body: str, *, alternates=N
 <meta property="og:description" content="{esc(desc)}">
 {img}<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/assets/img/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
 <link rel="apple-touch-icon" href="/assets/img/logo.png">
 <link rel="alternate" type="text/markdown" href="/llms.txt" title="Avail — guide for AI assistants">
 <style>{CSS}</style>
@@ -585,8 +658,21 @@ def crumbs_html(trail: list) -> str:
 
 # ---- Сборка ---------------------------------------------------------------
 
-def build(out: str, ads: list, now: datetime.datetime) -> dict:
+def build(out: str, ads: list, now: datetime.datetime, local: dict = None) -> dict:
     files = {}
+    local = local or {}
+
+    def main_photo(a):
+        """Главное фото: копия на avail.asia, если есть, иначе из базы."""
+        if a.get("id") in local:
+            return f"{ORIGIN}/{local[a['id']]}"
+        return (a.get("photo") or [""])[0]
+
+    def mod_date(xs):
+        """Дата последнего настоящего изменения (для lastmod в карте сайта)."""
+        ds = [str(a.get("updated_at") or a.get("created_at") or "")[:10] for a in xs]
+        ds = [x for x in ds if re.fullmatch(r"\d{4}-\d{2}-\d{2}", x)]
+        return max(ds) if ds else now.date().isoformat()
 
     def put(path: str, text: str):
         rel = path.strip("/") + "/index.html" if not path.endswith(".xml") and not path.endswith(".txt") else path.strip("/")
@@ -606,8 +692,10 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
     # они подставляли чужие изображения по теме.
     page_imgs = {}
 
+    page_mod = {}
+
     def first_photos(xs, n=5):
-        return [p[0] for p in ((a.get("photo") or []) for a in xs) if p][:n]
+        return [p for p in (main_photo(a) for a in xs) if p][:n]
 
     month = now.month - 1
     for city, cinfo in CITIES.items():
@@ -638,10 +726,11 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
                     + f'<div class="chips">{chips}</div><div class="grid">'
                     + "".join(card(a, lang) for a in city_ads[:60]) + "</div>" + cta(lang))
             put(base, page(lang, base, title, desc, body, alternates=alts,
-                           image=(city_ads[0].get("photo") or [""])[0],
+                           image=main_photo(city_ads[0]),
                            ld=[crumbs_ld(trail), itemlist(city_ads, lang)]))
             urls.append(base)
             page_imgs[base] = first_photos(city_ads)
+            page_mod[base] = mod_date(city_ads)
             # Раздел и районы
             for c in cats:
                 clabel = CATS.get(c, GENERIC_CAT)[lang]
@@ -662,9 +751,10 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
                         + f'<div class="chips">{chips}</div><div class="grid">'
                         + "".join(card(a, lang) for a in c_ads[:120]) + "</div>" + cta(lang))
                 put(cpath, page(lang, cpath, title, desc, body, alternates={l: f"/{l}/{cs}/{c}/" for l in LANGS},
-                                image=(c_ads[0].get("photo") or [""])[0], ld=[crumbs_ld(trail), itemlist(c_ads, lang)]))
+                                image=main_photo(c_ads[0]), ld=[crumbs_ld(trail), itemlist(c_ads, lang)]))
                 urls.append(cpath)
                 page_imgs[cpath] = first_photos(c_ads)
+                page_mod[cpath] = mod_date(c_ads)
                 for d in dists:
                     d_ads = groups[(city, c, d)]
                     dname = district_name(d, lang)
@@ -683,9 +773,10 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
                             + f'<div class="chips" style="margin-top:20px">{others}</div>' + cta(lang))
                     put(dpath, page(lang, dpath, title, desc, body,
                                     alternates={l: f"/{l}/{cs}/{c}/{slug(d)}/" for l in LANGS},
-                                    image=(d_ads[0].get("photo") or [""])[0], ld=[crumbs_ld(trail), itemlist(d_ads, lang)]))
+                                    image=main_photo(d_ads[0]), ld=[crumbs_ld(trail), itemlist(d_ads, lang)]))
                     urls.append(dpath)
                     page_imgs[dpath] = first_photos(d_ads)
+                    page_mod[dpath] = mod_date(d_ads)
             # Цены за месяц
             ppath = f"{base}prices/"
             mtitle = u["prices_title"].format(month=f"{u['months'][month]} {now.year}")
@@ -707,6 +798,7 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
             put(ppath, page(lang, ppath, mtitle, u["prices_intro"], body,
                             alternates={l: f"/{l}/{cs}/prices/" for l in LANGS}, ld=[crumbs_ld(trail)]))
             urls.append(ppath)
+            page_mod[ppath] = mod_date(city_ads)
 
     # Страница каждого объявления — на языке оригинала (/a/<id>/) и на
     # каждом языке перевода (/<язык>/a/<id>/), связаны hreflang.
@@ -735,9 +827,15 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
             trail = [(u["home"], "/"), (cname, f"/{lang}/{cs}/"), (clabel, f"/{lang}/{cs}/{a['_cat']}/")]
             if district:
                 trail.append((dname, f"/{lang}/{cs}/{a['_cat']}/{slug(district)}/"))
+            main = main_photo(a)
+            ld_imgs = ([main] if main else []) + [x for x in photos[:5] if x != main]
             product = {"@context": "https://schema.org", "@type": "Product", "name": name,
-                       "description": text[:500], "image": photos[:5], "url": ORIGIN + path,
-                       "category": clabel, "productID": a["id"]}
+                       "description": text[:500], "image": ld_imgs[:5], "url": ORIGIN + path,
+                       "category": clabel, "productID": a["id"],
+                       "brand": {"@type": "Brand", "name": "Avail"}}
+            props = offer_props(a)
+            if props:
+                product["additionalProperty"] = props
             if p:
                 product["offers"] = {
                     "@type": "Offer", "price": round(p, 2), "priceCurrency": cur,
@@ -745,6 +843,17 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
                     "availableAtOrFrom": {"@type": "Place", "name": place, "address": {
                         "@type": "PostalAddress", "addressLocality": dname or cname,
                         "addressRegion": cname, "addressCountry": CITIES[city]["country"]}}}
+                # Аренда или продажа (GoodRelations), и срок цены — если автор
+                # его указал (pricePeriod); без срока не выдумываем.
+                fn = {"rent": "LeaseOut", "sale": "Sell"}.get(str(a.get("item_type") or ""))
+                if fn:
+                    product["offers"]["businessFunction"] = "http://purl.org/goodrelations/v1#" + fn
+                unit = PERIOD_UNIT.get(str((a.get("specifications") or {}).get("pricePeriod") or ""))
+                if unit:
+                    product["offers"]["priceSpecification"] = {
+                        "@type": "UnitPriceSpecification", "price": round(p, 2), "priceCurrency": cur,
+                        "unitCode": unit, "referenceQuantity": {"@type": "QuantitativeValue", "value": 1,
+                                                                "unitCode": unit}}
             imgs = "".join(f'<img loading="lazy" src="{esc(x)}" alt="{esc(name)}">' for x in photos[:10])
             # Человеку с другим языком телефона — ссылка на его перевод
             # (не подмена текста: поисковик должен видеть ту же страницу).
@@ -761,10 +870,11 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
                     f'<a class="btn o" href="{APP_STORE}" rel="noopener">App Store</a>'
                     f'<a class="btn o" href="{PLAY}" rel="noopener">Google Play</a></div>')
             put(path, page(lang, path, title, desc, body, alternates=alts if len(langs) > 1 else None,
-                           image=photos[0] if photos else "", ld=[product, crumbs_ld(trail + [(name, path)])],
+                           image=main, ld=[product, crumbs_ld(trail + [(name, path)])],
                            x_default=f"/a/{a['id']}/"))
             urls.append(path)
-            page_imgs[path] = photos[:5]
+            page_imgs[path] = ld_imgs[:5]
+            page_mod[path] = mod_date([a])
 
     files["llms.txt"] = llms_txt(groups, now)
     stamp = now.date().isoformat()
@@ -776,8 +886,8 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
     files["sitemap-seo.xml"] = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                                 '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
                                 'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
-                                + "".join(f"<url><loc>{ORIGIN}{u}</loc><lastmod>{stamp}</lastmod>{img_tags(u)}</url>\n"
-                                          for u in urls)
+                                + "".join(f"<url><loc>{ORIGIN}{u}</loc><lastmod>{page_mod.get(u, stamp)}</lastmod>"
+                                          f"{img_tags(u)}</url>\n" for u in urls)
                                 + "</urlset>\n")
     return files
 
@@ -859,7 +969,8 @@ def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "."
     now = datetime.datetime.now(TZ)
     ads = fetch_adverts()
-    files = build(out, ads, now)
+    local = sync_photos(out, ads)
+    files = build(out, ads, now, local)
     changed = write(out, files)
     print(f"объявлений: {len(ads)}, страниц: {len(files) - 1}, изменилось: {len(changed)}")
     if "--ping-all" in sys.argv:

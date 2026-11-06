@@ -15,6 +15,8 @@
 <meta property="og:image" content="https://avail.asia/assets/img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="assets/img/logo.png">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
 <link rel="apple-touch-icon" href="/assets/img/logo.png">
 <link rel="alternate" type="text/markdown" href="/llms.txt" title="Avail — guide for AI assistants">
 <style>
@@ -345,16 +347,16 @@ footer a:hover{color:var(--fg)}
 }
 </style>
 
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Avail", "url": "https://avail.asia/", "logo": "https://avail.asia/assets/img/logo.png", "sameAs": ["https://www.instagram.com/avail.app.th/", "https://apps.apple.com/app/id6466668151", "https://play.google.com/store/apps/details?id=com.asiaavail.avail"]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Avail", "url": "https://avail.asia/", "inLanguage": ["ru", "en", "th", "zh", "id", "ms", "vi", "km"]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "MobileApplication", "name": "Avail", "operatingSystem": "iOS, Android", "applicationCategory": "ShoppingApplication", "url": "https://avail.asia/", "downloadUrl": ["https://apps.apple.com/app/id6466668151", "https://play.google.com/store/apps/details?id=com.asiaavail.avail"], "inLanguage": ["ru", "en", "th", "zh", "id", "ms", "vi", "km"], "image": "https://avail.asia/assets/img/og.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "THB"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "@id": "https://avail.asia/#organization", "name": "Avail", "alternateName": ["Avail Asia", "avail.asia", "Avail classifieds"], "url": "https://avail.asia/", "description": "Avail is an independent classifieds app for Southeast Asia and Russia, launched in Phuket, Thailand: rentals and real estate, tours, vehicles, electronics, services and parcels, with automatic chat translation in 8 languages. Not affiliated with the Avail car rental app, Avail by Realtor.com or Avail Project.", "logo": {"@type": "ImageObject", "url": "https://avail.asia/assets/img/logo.png", "width": 320, "height": 320, "caption": "Avail logo"}, "image": "https://avail.asia/assets/img/og.jpg", "email": "info@avail.asia", "areaServed": [{"@type": "City", "name": "Phuket", "containedInPlace": {"@type": "Country", "name": "Thailand"}}], "sameAs": ["https://www.instagram.com/avail.app.th/", "https://www.facebook.com/231762643348519", "https://www.threads.com/@avail.app.th", "https://www.youtube.com/@Avail.mobileApp", "https://apps.apple.com/app/id6466668151", "https://play.google.com/store/apps/details?id=com.asiaavail.avail"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "@id": "https://avail.asia/#website", "name": "Avail", "alternateName": "avail.asia", "url": "https://avail.asia/", "inLanguage": ["ru", "en", "th", "zh", "id", "ms", "vi", "km"], "publisher": {"@id": "https://avail.asia/#organization"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "MobileApplication", "@id": "https://avail.asia/#app", "name": "Avail", "alternateName": "Avail: classifieds and rentals in Phuket", "description": "Avail is an independent classifieds app for Southeast Asia and Russia, launched in Phuket, Thailand: rentals and real estate, tours, vehicles, electronics, services and parcels, with automatic chat translation in 8 languages. Not affiliated with the Avail car rental app, Avail by Realtor.com or Avail Project.", "operatingSystem": "iOS, Android", "applicationCategory": "ShoppingApplication", "url": "https://avail.asia/", "downloadUrl": ["https://apps.apple.com/app/id6466668151", "https://play.google.com/store/apps/details?id=com.asiaavail.avail"], "installUrl": ["https://apps.apple.com/app/id6466668151", "https://play.google.com/store/apps/details?id=com.asiaavail.avail"], "inLanguage": ["ru", "en", "th", "zh", "id", "ms", "vi", "km"], "image": "https://avail.asia/assets/img/og.jpg", "publisher": {"@id": "https://avail.asia/#organization"}, "author": {"@id": "https://avail.asia/#organization"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "THB"}}</script>
 </head>
 <body>
 <div class="glow" aria-hidden="true"></div>
 
 <header class="top">
   <div class="wrap nav">
-    <a class="brand" href="#top" aria-label="Avail"><img src="assets/img/logo.png" alt=""><b>Avail</b></a>
+    <a class="brand" href="#top" aria-label="Avail"><img src="assets/img/logo.png" alt="Avail logo" title="Avail"><b>Avail</b></a>
     <div class="cmenu">
       <button type="button" id="catBtn" aria-haspopup="true" aria-expanded="false" aria-controls="catList" aria-label="Категории" data-i-aria="navCats">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/></svg>
@@ -412,15 +414,15 @@ footer a:hover{color:var(--fg)}
       </div>
 
       <div class="stage" id="stage" aria-hidden="true">
-        <div class="phone" id="phone"><div class="screen"><img id="phoneShot" src="assets/img/screens/ru/chat.jpg" alt=""></div></div>
+        <div class="phone" id="phone"><div class="screen"><img id="phoneShot" src="assets/img/screens/ru/chat.jpg" alt="Avail app: chat with automatic translation"></div></div>
         <div class="float f-card fc1" data-depth="1.2">
-          <img src="assets/img/photos/villa.jpg" alt="">
+          <img src="assets/img/photos/villa.jpg" alt="Pool villa in Rawai, Phuket — listing on Avail">
           <b data-i="villaTitle">Вилла с бассейном, Раваи</b>
           <span class="pr" data-price="130000" data-cur="THB">130 000<sup>THB</sup></span>
           <span class="loc" data-i="villaLoc">Пхукет · Раваи</span>
         </div>
         <div class="float f-card fc2" data-depth="1.8">
-          <img src="assets/img/photos/similan.jpg" alt="">
+          <img src="assets/img/photos/similan.jpg" alt="Similan Islands day tour — listing on Avail">
           <b data-i="tourTitle">Симиланские острова за 1 день</b>
           <span class="pr" data-price="2900" data-cur="THB">2 900<sup>THB</sup></span>
           <span class="loc" data-i="tourLoc">Пхукет · Пханг Нга</span>
@@ -478,7 +480,7 @@ footer a:hover{color:var(--fg)}
         <div class="bar"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="opacity:.7"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span id="sText" data-i="searchDemo">двушка у моря до 30к</span><span class="cur"></span></div>
         <div class="chips" id="sChips"><span class="chip" data-i="chip1">до 30 000 THB</span><span class="chip" data-i="chip2">2 спальни</span><span class="chip" data-i="chip3">у моря</span></div>
         <div class="res" id="sRes">
-          <img src="assets/img/photos/room.jpg" alt="">
+          <img src="assets/img/photos/room.jpg" alt="Apartment by the beach in Phuket — listing on Avail">
           <div><b data-i="resTitle">Апартаменты у пляжа Най Янг</b><span class="pr" data-price="28000" data-cur="THB">28 000 <small>THB <span data-i="perMonth">/ мес.</span></small></span><br><span data-i="resLoc">Пхукет · Най Янг</span></div>
         </div>
         <div class="voice"><span class="eq"><i></i><i></i><i></i><i></i><i></i></span><span data-i="voiceLine">Удерживайте логотип — и говорите: голосовой поиск понимает все 8 языков</span></div>
@@ -502,11 +504,11 @@ footer a:hover{color:var(--fg)}
       </div>
       <div class="tours">
         <article class="tour">
-          <div class="ph"><img src="assets/img/photos/villa.jpg" alt=""><span class="badge" data-i="realtyB1">3 спальни · бассейн</span></div>
+          <div class="ph"><img src="assets/img/photos/villa.jpg" alt="Pool villa in Rawai, Phuket — listing on Avail"><span class="badge" data-i="realtyB1">3 спальни · бассейн</span></div>
           <div class="in"><b data-i="villaTitle">Вилла с бассейном, Раваи</b><span class="pr" data-price="130000" data-cur="THB">130 000 THB <small data-i="perMonth">/ мес.</small></span><span data-i="villaLoc">Пхукет · Раваи</span></div>
         </article>
         <article class="tour">
-          <div class="ph"><img src="assets/img/photos/room.jpg" alt=""><span class="badge" data-i="realtyB2">1 спальня · вид на море</span></div>
+          <div class="ph"><img src="assets/img/photos/room.jpg" alt="Apartment by the beach in Phuket — listing on Avail"><span class="badge" data-i="realtyB2">1 спальня · вид на море</span></div>
           <div class="in"><b data-i="smpCondo">Кондо с видом на море, Ката</b><span class="pr" data-price="35000" data-cur="THB">35 000 THB <small data-i="perMonth">/ мес.</small></span><span data-i="smpCondoLoc">Пхукет · Ката</span></div>
         </article>
       </div>
@@ -518,11 +520,11 @@ footer a:hover{color:var(--fg)}
     <div class="wrap split rev">
       <div class="tours">
         <article class="tour">
-          <div class="ph"><img src="assets/img/photos/similan.jpg" alt=""><span class="badge" data-i="ruGuide">Русский гид</span></div>
+          <div class="ph"><img src="assets/img/photos/similan.jpg" alt="Similan Islands day tour — listing on Avail"><span class="badge" data-i="ruGuide">Русский гид</span></div>
           <div class="in"><b data-i="tourTitle">Симиланские острова за 1 день</b><span class="pr" data-price="2900" data-cur="THB">2 900 THB <small data-i="perPerson">/ чел.</small></span><span data-i="tourSub">Трансфер из отеля · Обед включён</span></div>
         </article>
         <article class="tour">
-          <div class="ph"><img src="assets/img/photos/yacht.jpg" alt=""><span class="badge" data-i="ruGuide">Русский гид</span></div>
+          <div class="ph"><img src="assets/img/photos/yacht.jpg" alt="Yacht in Phuket — listing on Avail"><span class="badge" data-i="ruGuide">Русский гид</span></div>
           <div class="in"><b data-i="tour2Title">Горы Аватара</b><span class="pr" data-price="3500" data-cur="THB">3 500 THB <small data-i="perPerson">/ чел.</small></span><span data-i="tour2Sub">Пханг Нга · Целый день</span></div>
         </article>
       </div>
@@ -608,7 +610,7 @@ footer a:hover{color:var(--fg)}
            сайта (лента свежих объявлений). -->
       <div class="webshot" aria-hidden="true">
         <div class="bar"><i></i><i></i><i></i><span>avail.asia/app</span></div>
-        <img class="wshot" id="webShot" src="assets/img/screens/ru/web.jpg" alt="" loading="lazy" width="1280" height="880">
+        <img class="wshot" id="webShot" src="assets/img/screens/ru/web.jpg" alt="Avail in the browser: listings feed" loading="lazy" width="1280" height="880">
       </div>
     </div>
   </section>
@@ -687,7 +689,7 @@ footer a:hover{color:var(--fg)}
 
 <footer>
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Avail"><img src="assets/img/logo.png" alt="" style="width:30px;height:30px"><b style="font-size:19px">Avail</b></a>
+    <a class="brand" href="#top" aria-label="Avail"><img src="assets/img/logo.png" alt="Avail logo" style="width:30px;height:30px"><b style="font-size:19px">Avail</b></a>
     <nav>
       <!-- Свои статичные страницы: функция legal отдаёт text/plain (сырой текст). -->
       <a href="#about" data-i="navAbout">О проекте</a>

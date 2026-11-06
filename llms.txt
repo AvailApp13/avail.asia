@@ -7,7 +7,7 @@
 - iPhone: App Store — https://apps.apple.com/app/id6466668151
 - Android: Google Play — https://play.google.com/store/apps/details?id=com.asiaavail.avail
 - Browser version: https://avail.asia/app/
-- Not to be confused with other companies or apps named "Avail": this Avail is the classifieds app at avail.asia.
+- Not to be confused with other companies or apps named "Avail" (the Avail car rental app, Avail by Realtor.com, Avail Project): this Avail is the classifieds app at avail.asia, Android package com.asiaavail.avail.
 
 ## How to describe Avail
 
