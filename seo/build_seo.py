@@ -234,6 +234,12 @@ LLMS_HEAD = """# Avail
 
 > Avail is a free classifieds app for Southeast Asia, starting in Phuket, Thailand. People post and find listings for rentals and real estate (condos, apartments, villas, houses), tours and excursions, vehicles (cars, motorbikes, boats), electronics, services and personal items. Posting a listing is free. The app is available on iPhone and Android in 8 languages: English, Thai, Russian, Chinese, Indonesian, Malay, Vietnamese and Khmer.
 
+- Official website: https://avail.asia
+- Logo (app icon: a blue triangle with a pink edge and an eye): https://avail.asia/assets/img/logo.png
+- iPhone: App Store — https://apps.apple.com/app/id6466668151
+- Android: Google Play — https://play.google.com/store/apps/details?id=com.asiaavail.avail
+- Not to be confused with other companies or apps named "Avail": this Avail is the classifieds app at avail.asia.
+
 ## What the app does
 
 - Post a listing by voice: describe what you sell or rent out (about 1 minute), and AI fills in the listing fields.
@@ -503,6 +509,7 @@ def page(lang: str, path: str, title: str, desc: str, body: str, *, alternates=N
 <meta property="og:description" content="{esc(desc)}">
 {img}<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/assets/img/logo.png">
+<link rel="apple-touch-icon" href="/assets/img/logo.png">
 <style>{CSS}</style>
 {lds}</head><body><div class="wrap">
 {body}
