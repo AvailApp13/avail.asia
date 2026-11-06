@@ -1,14 +1,15 @@
 # Avail
 
-> Avail is a free classifieds app for Southeast Asia, starting in Phuket, Thailand. People post and find listings for rentals and real estate, tours and excursions, vehicles (cars, motorbikes), electronics, services and personal items. Posting a listing is free. The app is available on iPhone and Android in 8 languages: English, Thai, Russian, Chinese, Indonesian, Malay, Vietnamese and Khmer.
+> Avail is a free classifieds app for Southeast Asia, starting in Phuket, Thailand. People post and find listings for rentals and real estate (condos, apartments, villas, houses), tours and excursions, vehicles (cars, motorbikes, boats), electronics, services and personal items. Posting a listing is free. The app is available on iPhone and Android in 8 languages: English, Thai, Russian, Chinese, Indonesian, Malay, Vietnamese and Khmer.
 
 ## What the app does
 
 - Post a listing by voice: describe what you sell or rent out (about 1 minute), and AI fills in the listing fields.
-- Chat with automatic translation: buyer and seller each write in their own language; every message is translated in the chat.
+- Chat with automatic translation: buyer and seller each write in their own language; every message is translated in the chat. A Thai owner and a foreign tenant can talk without a common language.
 - Search by voice or in plain words, like asking a friend: "condo by the sea under 40,000".
-- Bulk upload: upload a price list file (XLSX, CSV, JSON, XML or TXT) and AI turns it into draft listings.
+- Bulk upload for agencies and shops: upload a price list file (XLSX, CSV, JSON, XML or TXT) and AI turns it into draft listings.
 - Map with listings, in-app audio calls between buyer and seller, and an approximate price in the user's own currency.
+- Tours and excursions show the route with all stops.
 - Optional paid promotion of listings (top placement, highlight) with in-app credits. Posting itself is free.
 
 ## Download
@@ -17,17 +18,149 @@
 - [App Store (iPhone)](https://apps.apple.com/app/id6466668151)
 - [Google Play (Android)](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
 
-## Listings on the web
+## Frequently asked questions
 
-- [Phuket: apartments for rent (English)](https://avail.asia/en/phuket/apartments-rent/)
-- [Phuket: rental prices (English)](https://avail.asia/en/phuket/prices/)
-- [Phuket overview (English)](https://avail.asia/en/phuket/)
-- [All pages (sitemap)](https://avail.asia/sitemap.xml)
+- Is Avail free? Yes. Downloading the app and posting listings are free. Only optional promotion of a listing is paid.
+- Where does Avail work? Avail works in Phuket, Thailand, and is growing across Southeast Asia.
+- Can I contact a seller who speaks another language? Yes. Write in your own language; the chat translates every message for both sides.
+- How do I rent a condo or a villa in Phuket with Avail? Open the app, choose Real estate or simply say what you need, and message the owner in the app.
+- How do I post many listings at once? Use bulk upload: send a price list file and AI creates draft listings for review.
+- Does Avail show the sellers' phone numbers or emails on the web? No. Contact goes through the app.
 
-Each public listing has its own page at https://avail.asia/a/<id>/ with translations at https://avail.asia/<language>/a/<id>/.
+## Listings right now (updated 2026-11-06)
+
+### Phuket: 92 offers
+
+- [Apartments for rent — Phuket](https://avail.asia/en/phuket/apartments-rent/): 92 offers
+  - [Bang Tao](https://avail.asia/en/phuket/apartments-rent/bang-tao/) (32), [Rawai](https://avail.asia/en/phuket/apartments-rent/rawai/) (14), [Phuket Town](https://avail.asia/en/phuket/apartments-rent/phuket-town/) (9), [Karon](https://avail.asia/en/phuket/apartments-rent/karon/) (7), [Kamala](https://avail.asia/en/phuket/apartments-rent/kamala/) (5), [Patong](https://avail.asia/en/phuket/apartments-rent/patong/) (5), [Nai Yang](https://avail.asia/en/phuket/apartments-rent/nai-yang/) (4), [Kata](https://avail.asia/en/phuket/apartments-rent/kata/) (3), [Nai Harn](https://avail.asia/en/phuket/apartments-rent/nai-harn/) (3), [Panwa](https://avail.asia/en/phuket/apartments-rent/panwa/) (3), [Chalong](https://avail.asia/en/phuket/apartments-rent/chalong/) (2), [Kathu](https://avail.asia/en/phuket/apartments-rent/kathu/) (2), [Pa Khlok](https://avail.asia/en/phuket/apartments-rent/pa-khlok/) (1), [Surin](https://avail.asia/en/phuket/apartments-rent/surin/) (1), [Thalang](https://avail.asia/en/phuket/apartments-rent/thalang/) (1)
+- [Phuket prices — November 2026](https://avail.asia/en/phuket/prices/): How much renting and buying costs in Phuket by district, based on Avail listings and updated every night. Prices are as the owner set them: per day or per month.
+
+## Avail in every app language
+
+### Русский (ru)
+
+Аренда квартир на Пхукете: 92 предложения с фото и ценами. Пишите хозяевам на своём языке — Avail переведёт.
+
+- Объявление голосом: Расскажите, что продаёте или сдаёте. ИИ сам заполнит поля
+- Тайский, русский, английский — неважно: Чат сам переведёт каждое сообщение
+- Ищите голосом: Как будто спрашиваете друга: „кондо у моря до 40 000“
+- Размещение бесплатно: Жильё, авто, услуги, вещи, электроника
+- Прайс-лист → десятки объявлений: Загрузите файл, ИИ создаст объявления сам
+
+- [Пхукет](https://avail.asia/ru/phuket/)
+- [Аренда квартир — Пхукет](https://avail.asia/ru/phuket/apartments-rent/): 92 предложения
+- [Цены на Пхукете — ноябрь 2026](https://avail.asia/ru/phuket/prices/)
+- [Скачать Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
+
+### English (en)
+
+Apartments for rent in Phuket: 92 offers with photos and prices. Message owners in your own language — Avail translates.
+
+- List it by voice: Tell us what you’re selling or renting out. AI fills in the fields for you
+- Thai, Russian, English — no problem: The chat translates every message for you
+- Search by voice: Like asking a friend: “condo by the sea under 40,000”
+- Posting is free: Housing, vehicles, services, goods, electronics
+- Price list → dozens of listings: Upload a file and AI creates the listings
+
+- [Phuket](https://avail.asia/en/phuket/)
+- [Apartments for rent — Phuket](https://avail.asia/en/phuket/apartments-rent/): 92 offers
+- [Phuket prices — November 2026](https://avail.asia/en/phuket/prices/)
+- [Get Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
+
+### ไทย (th)
+
+ห้องพัก คอนโดให้เช่า ในภูเก็ต: 92 รายการ พร้อมรูปและราคา ทักเจ้าของเป็นภาษาของคุณ — Avail แปลให้
+
+- ลงประกาศด้วยเสียง: บอกว่าคุณขายหรือให้เช่าอะไร AI กรอกข้อมูลให้เอง
+- ไทย รัสเซีย อังกฤษ — ภาษาไหนก็ได้: แชทแปลทุกข้อความให้อัตโนมัติ
+- ค้นหาด้วยเสียง: เหมือนถามเพื่อนว่า “คอนโดใกล้ทะเล ไม่เกิน 40,000”
+- ลงประกาศฟรี: ที่พัก รถ บริการ ของใช้ อิเล็กทรอนิกส์
+- ตารางราคา → ประกาศหลายสิบรายการ: อัปโหลดไฟล์ AI สร้างประกาศให้เอง
+
+- [ภูเก็ต](https://avail.asia/th/phuket/)
+- [ห้องพัก คอนโดให้เช่า — ภูเก็ต](https://avail.asia/th/phuket/apartments-rent/): 92 รายการ
+- [ราคาในภูเก็ต — พฤศจิกายน 2026](https://avail.asia/th/phuket/prices/)
+- [ดาวน์โหลด Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
+
+### 中文 (zh)
+
+普吉岛公寓出租：92 条，附照片和价格。用您的语言联系房东 — Avail 自动翻译。
+
+- 语音发布信息: 说出您要出售或出租的东西，AI 会自动填写各项内容
+- 泰语、俄语、英语——都没问题: 聊天中的每条消息都会自动翻译
+- 语音搜索: 就像问朋友一样：“海边公寓，40,000 以内”
+- 免费发布: 住房、汽车、服务、物品、电子产品
+- 价格表 → 几十条信息: 上传文件，AI 自动生成信息
+
+- [普吉岛](https://avail.asia/zh/phuket/)
+- [公寓出租 — 普吉岛](https://avail.asia/zh/phuket/apartments-rent/): 92 条
+- [普吉岛价格 — 11月 2026](https://avail.asia/zh/phuket/prices/)
+- [下载 Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
+
+### Bahasa Indonesia (id)
+
+Sewa apartemen di Phuket: 92 penawaran dengan foto dan harga. Hubungi pemilik dalam bahasa Anda — Avail menerjemahkan.
+
+- Pasang iklan dengan suara: Ceritakan apa yang Anda jual atau sewakan. AI langsung mengisi kolomnya
+- Bahasa Thai, Rusia, Inggris — tidak masalah: Chat menerjemahkan setiap pesan secara otomatis
+- Cari dengan suara: Seperti bertanya kepada teman: “kondo dekat laut di bawah 40.000”
+- Pasang iklan gratis: Hunian, kendaraan, layanan, barang, elektronik
+- Daftar harga → puluhan iklan: Unggah file, AI membuat iklannya sendiri
+
+- [Phuket](https://avail.asia/id/phuket/)
+- [Sewa apartemen — Phuket](https://avail.asia/id/phuket/apartments-rent/): 92 penawaran
+- [Harga di Phuket — November 2026](https://avail.asia/id/phuket/prices/)
+- [Unduh Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
+
+### Bahasa Melayu (ms)
+
+Sewa apartmen di Phuket: 92 tawaran dengan foto dan harga. Hubungi pemilik dalam bahasa anda — Avail menterjemah.
+
+- Siarkan iklan dengan suara: Beritahu kami apa yang anda jual atau sewakan. AI akan mengisi butiran sendiri
+- Bahasa Thai, Rusia, Inggeris — tiada masalah: Sembang menterjemah setiap mesej secara automatik
+- Cari dengan suara: Seperti bertanya kepada kawan: “kondo tepi laut bawah 40,000”
+- Siarkan iklan percuma: Kediaman, kenderaan, perkhidmatan, barangan, elektronik
+- Senarai harga → berpuluh-puluh iklan: Muat naik fail, AI akan membuat iklan sendiri
+
+- [Phuket](https://avail.asia/ms/phuket/)
+- [Sewa apartmen — Phuket](https://avail.asia/ms/phuket/apartments-rent/): 92 tawaran
+- [Harga di Phuket — November 2026](https://avail.asia/ms/phuket/prices/)
+- [Muat turun Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
+
+### Tiếng Việt (vi)
+
+Cho thuê căn hộ ở Phuket: 92 tin có ảnh và giá. Nhắn chủ nhà bằng ngôn ngữ của bạn — Avail sẽ dịch.
+
+- Đăng tin bằng giọng nói: Hãy nói bạn bán hoặc cho thuê gì. AI sẽ tự điền thông tin
+- Tiếng Thái, tiếng Nga, tiếng Anh — không thành vấn đề: Khung chat tự dịch từng tin nhắn
+- Tìm kiếm bằng giọng nói: Như hỏi một người bạn: “căn hộ gần biển dưới 40.000”
+- Đăng tin miễn phí: Nhà ở, xe cộ, dịch vụ, đồ dùng, đồ điện tử
+- Bảng giá → hàng chục tin đăng: Tải tệp lên, AI tự tạo tin đăng
+
+- [Phuket](https://avail.asia/vi/phuket/)
+- [Cho thuê căn hộ — Phuket](https://avail.asia/vi/phuket/apartments-rent/): 92 tin
+- [Giá ở Phuket — tháng 11 2026](https://avail.asia/vi/phuket/prices/)
+- [Tải Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
+
+### ខ្មែរ (km)
+
+ផ្ទះល្វែងសម្រាប់ជួល នៅភូកេត៖ 92 ការផ្តល់ជូន មានរូបភាព និងតម្លៃ។ ផ្ញើសារទៅម្ចាស់ជាភាសារបស់អ្នក — Avail បកប្រែ។
+
+- ដាក់ការផ្សាយដោយសំឡេង: ប្រាប់យើងថា អ្នកលក់ ឬដាក់ឱ្យជួលអ្វី។ AI នឹងបំពេញព័ត៌មានឱ្យដោយខ្លួនឯង
+- ភាសាថៃ រុស្ស៊ី អង់គ្លេស — ភាសាណាក៏បាន: ការជជែកនឹងបកប្រែគ្រប់សារដោយស្វ័យប្រវត្តិ
+- ស្វែងរកដោយសំឡេង: ដូចសួរមិត្តភក្តិ៖ “ខុនដូជិតសមុទ្រ ក្រោម 40,000”
+- ដាក់ការផ្សាយដោយឥតគិតថ្លៃ: លំនៅដ្ឋាន យានជំនិះ សេវាកម្ម ទំនិញ គ្រឿងអេឡិចត្រូនិក
+- បញ្ជីតម្លៃ → ការផ្សាយរាប់សិប: ផ្ទុកឯកសារឡើង AI នឹងបង្កើតការផ្សាយដោយខ្លួនឯង
+
+- [ភូកេត](https://avail.asia/km/phuket/)
+- [ផ្ទះល្វែងសម្រាប់ជួល — ភូកេត](https://avail.asia/km/phuket/apartments-rent/): 92 ការផ្តល់ជូន
+- [តម្លៃនៅភូកេត — វិច្ឆិកា 2026](https://avail.asia/km/phuket/prices/)
+- [ទាញយក Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
+
 
 ## Help and legal
 
 - [Support](https://avail.asia/support.html)
 - [Privacy Policy](https://avail.asia/legal/privacy/)
 - [Terms of Use](https://avail.asia/legal/terms/)
+- [All pages (sitemap)](https://avail.asia/sitemap.xml)

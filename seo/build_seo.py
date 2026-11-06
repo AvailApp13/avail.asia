@@ -18,7 +18,9 @@ AvailApp13/avail.asia) берёт живые объявления из базы 
   (apple-app-site-association: /a/*);
 - /<язык>/a/<id>/                  — то же объявление в переводе (на каждый
   язык, на который переведено название), все версии связаны hreflang;
-- sitemap-seo.xml и ключ IndexNow (сигнал Bing и Яндексу).
+- sitemap-seo.xml и ключ IndexNow (сигнал Bing и Яндексу);
+- llms.txt — справка об Avail для ИИ-помощников на 8 языках (живые
+  разделы, районы, цены и ссылки).
 
 Всё, что собрано в прошлый раз и больше не нужно (объявление сняли),
 удаляется по списку .seo-manifest.json. Остальной сайт не трогается.
@@ -161,6 +163,166 @@ UI = {
            "desc_list": "{title}។ រូបភាព តម្លៃ និងការពិពណ៌នា។ ផ្ញើសារទៅម្ចាស់ជាភាសារបស់អ្នក — Avail បកប្រែ។",
            "months": ["មករា", "កុម្ភៈ", "មីនា", "មេសា", "ឧសភា", "មិថុនា", "កក្កដា", "សីហា", "កញ្ញា", "តុលា", "វិច្ឆិកា", "ធ្នូ"]},
 }
+
+# Возможности Avail на 8 языках — заголовки и подписи заставки приложения
+# (lib/l10n/intl_*.arb, onboardTitle/onboardText; тексты проверены по словарям
+# 06.11.2026). Источник для llms.txt; меняются вместе с заставкой.
+FEATURES = {
+    "ru": [
+        ("Объявление голосом", "Расскажите, что продаёте или сдаёте. ИИ сам заполнит поля"),
+        ("Тайский, русский, английский — неважно", "Чат сам переведёт каждое сообщение"),
+        ("Ищите голосом", "Как будто спрашиваете друга: „кондо у моря до 40 000“"),
+        ("Размещение бесплатно", "Жильё, авто, услуги, вещи, электроника"),
+        ("Прайс-лист → десятки объявлений", "Загрузите файл, ИИ создаст объявления сам"),
+    ],
+    "en": [
+        ("List it by voice", "Tell us what you’re selling or renting out. AI fills in the fields for you"),
+        ("Thai, Russian, English — no problem", "The chat translates every message for you"),
+        ("Search by voice", "Like asking a friend: “condo by the sea under 40,000”"),
+        ("Posting is free", "Housing, vehicles, services, goods, electronics"),
+        ("Price list → dozens of listings", "Upload a file and AI creates the listings"),
+    ],
+    "th": [
+        ("ลงประกาศด้วยเสียง", "บอกว่าคุณขายหรือให้เช่าอะไร AI กรอกข้อมูลให้เอง"),
+        ("ไทย รัสเซีย อังกฤษ — ภาษาไหนก็ได้", "แชทแปลทุกข้อความให้อัตโนมัติ"),
+        ("ค้นหาด้วยเสียง", "เหมือนถามเพื่อนว่า “คอนโดใกล้ทะเล ไม่เกิน 40,000”"),
+        ("ลงประกาศฟรี", "ที่พัก รถ บริการ ของใช้ อิเล็กทรอนิกส์"),
+        ("ตารางราคา → ประกาศหลายสิบรายการ", "อัปโหลดไฟล์ AI สร้างประกาศให้เอง"),
+    ],
+    "zh": [
+        ("语音发布信息", "说出您要出售或出租的东西，AI 会自动填写各项内容"),
+        ("泰语、俄语、英语——都没问题", "聊天中的每条消息都会自动翻译"),
+        ("语音搜索", "就像问朋友一样：“海边公寓，40,000 以内”"),
+        ("免费发布", "住房、汽车、服务、物品、电子产品"),
+        ("价格表 → 几十条信息", "上传文件，AI 自动生成信息"),
+    ],
+    "id": [
+        ("Pasang iklan dengan suara", "Ceritakan apa yang Anda jual atau sewakan. AI langsung mengisi kolomnya"),
+        ("Bahasa Thai, Rusia, Inggris — tidak masalah", "Chat menerjemahkan setiap pesan secara otomatis"),
+        ("Cari dengan suara", "Seperti bertanya kepada teman: “kondo dekat laut di bawah 40.000”"),
+        ("Pasang iklan gratis", "Hunian, kendaraan, layanan, barang, elektronik"),
+        ("Daftar harga → puluhan iklan", "Unggah file, AI membuat iklannya sendiri"),
+    ],
+    "ms": [
+        ("Siarkan iklan dengan suara", "Beritahu kami apa yang anda jual atau sewakan. AI akan mengisi butiran sendiri"),
+        ("Bahasa Thai, Rusia, Inggeris — tiada masalah", "Sembang menterjemah setiap mesej secara automatik"),
+        ("Cari dengan suara", "Seperti bertanya kepada kawan: “kondo tepi laut bawah 40,000”"),
+        ("Siarkan iklan percuma", "Kediaman, kenderaan, perkhidmatan, barangan, elektronik"),
+        ("Senarai harga → berpuluh-puluh iklan", "Muat naik fail, AI akan membuat iklan sendiri"),
+    ],
+    "vi": [
+        ("Đăng tin bằng giọng nói", "Hãy nói bạn bán hoặc cho thuê gì. AI sẽ tự điền thông tin"),
+        ("Tiếng Thái, tiếng Nga, tiếng Anh — không thành vấn đề", "Khung chat tự dịch từng tin nhắn"),
+        ("Tìm kiếm bằng giọng nói", "Như hỏi một người bạn: “căn hộ gần biển dưới 40.000”"),
+        ("Đăng tin miễn phí", "Nhà ở, xe cộ, dịch vụ, đồ dùng, đồ điện tử"),
+        ("Bảng giá → hàng chục tin đăng", "Tải tệp lên, AI tự tạo tin đăng"),
+    ],
+    "km": [
+        ("ដាក់ការផ្សាយដោយសំឡេង", "ប្រាប់យើងថា អ្នកលក់ ឬដាក់ឱ្យជួលអ្វី។ AI នឹងបំពេញព័ត៌មានឱ្យដោយខ្លួនឯង"),
+        ("ភាសាថៃ រុស្ស៊ី អង់គ្លេស — ភាសាណាក៏បាន", "ការជជែកនឹងបកប្រែគ្រប់សារដោយស្វ័យប្រវត្តិ"),
+        ("ស្វែងរកដោយសំឡេង", "ដូចសួរមិត្តភក្តិ៖ “ខុនដូជិតសមុទ្រ ក្រោម 40,000”"),
+        ("ដាក់ការផ្សាយដោយឥតគិតថ្លៃ", "លំនៅដ្ឋាន យានជំនិះ សេវាកម្ម ទំនិញ គ្រឿងអេឡិចត្រូនិក"),
+        ("បញ្ជីតម្លៃ → ការផ្សាយរាប់សិប", "ផ្ទុកឯកសារឡើង AI នឹងបង្កើតការផ្សាយដោយខ្លួនឯង"),
+    ],
+}
+
+# Справка для ИИ-помощников (avail.asia/llms.txt, формат llmstxt.org):
+# постоянная часть на английском — только проверенные в коде возможности;
+# живая часть (разделы, районы, цены) и описание на 8 языках собираются
+# каждую ночь из тех же объявлений, что и страницы сайта.
+LLMS_HEAD = """# Avail
+
+> Avail is a free classifieds app for Southeast Asia, starting in Phuket, Thailand. People post and find listings for rentals and real estate (condos, apartments, villas, houses), tours and excursions, vehicles (cars, motorbikes, boats), electronics, services and personal items. Posting a listing is free. The app is available on iPhone and Android in 8 languages: English, Thai, Russian, Chinese, Indonesian, Malay, Vietnamese and Khmer.
+
+## What the app does
+
+- Post a listing by voice: describe what you sell or rent out (about 1 minute), and AI fills in the listing fields.
+- Chat with automatic translation: buyer and seller each write in their own language; every message is translated in the chat. A Thai owner and a foreign tenant can talk without a common language.
+- Search by voice or in plain words, like asking a friend: "condo by the sea under 40,000".
+- Bulk upload for agencies and shops: upload a price list file (XLSX, CSV, JSON, XML or TXT) and AI turns it into draft listings.
+- Map with listings, in-app audio calls between buyer and seller, and an approximate price in the user's own currency.
+- Tours and excursions show the route with all stops.
+- Optional paid promotion of listings (top placement, highlight) with in-app credits. Posting itself is free.
+
+## Download
+
+- [Download page (opens App Store or Google Play)](https://avail.asia/download)
+- [App Store (iPhone)](https://apps.apple.com/app/id6466668151)
+- [Google Play (Android)](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
+
+## Frequently asked questions
+
+- Is Avail free? Yes. Downloading the app and posting listings are free. Only optional promotion of a listing is paid.
+- Where does Avail work? Avail works in Phuket, Thailand, and is growing across Southeast Asia.
+- Can I contact a seller who speaks another language? Yes. Write in your own language; the chat translates every message for both sides.
+- How do I rent a condo or a villa in Phuket with Avail? Open the app, choose Real estate or simply say what you need, and message the owner in the app.
+- How do I post many listings at once? Use bulk upload: send a price list file and AI creates draft listings for review.
+- Does Avail show the sellers' phone numbers or emails on the web? No. Contact goes through the app.
+"""
+
+LLMS_TAIL = """
+## Help and legal
+
+- [Support](https://avail.asia/support.html)
+- [Privacy Policy](https://avail.asia/legal/privacy/)
+- [Terms of Use](https://avail.asia/legal/terms/)
+- [All pages (sitemap)](https://avail.asia/sitemap.xml)
+"""
+
+
+def llms_txt(groups: dict, now: datetime.datetime) -> str:
+    """avail.asia/llms.txt: постоянная часть + живые разделы и районы
+    по городам + описание Avail на каждом из 8 языков со ссылками."""
+    out = [LLMS_HEAD]
+    live, langs_part = [], []
+    month = now.month - 1
+    for city, cinfo in CITIES.items():
+        cs = cinfo["slug"]
+        keys = [k for k in groups if k[0] == city]
+        if not keys:
+            continue
+        cats = sorted({k[1] for k in keys}, key=lambda c: (-sum(len(groups[k]) for k in keys if k[1] == c), c))
+        total = sum(len(groups[k]) for k in keys)
+
+        def cat_line(c, lang):
+            # Без диапазона цен: в одном разделе цены за сутки и за месяц
+            # вперемешку — ИИ понял бы их неверно (подробно — страница цен).
+            xs = [a for k in keys if k[1] == c for a in groups[k]]
+            return (f"- [{CATS.get(c, GENERIC_CAT)[lang]} — {city_name(city, lang)}]"
+                    f"({ORIGIN}/{lang}/{cs}/{c}/): {len(xs)} {plural(lang, len(xs))}")
+
+        live.append(f"### {city_name(city, 'en')}: {total} {plural('en', total)}\n")
+        for c in cats:
+            live.append(cat_line(c, "en"))
+            dists = sorted({k[2] for k in keys if k[1] == c and k[2]}, key=lambda d: (-len(groups[(city, c, d)]), d))
+            if dists:
+                live.append("  - " + ", ".join(
+                    f"[{district_name(d, 'en')}]({ORIGIN}/en/{cs}/{c}/{slug(d)}/) ({len(groups[(city, c, d)])})"
+                    for d in dists))
+        live.append(f"- [{UI['en']['prices_title'].format(month=UI['en']['months'][month] + ' ' + str(now.year))}]"
+                    f"({ORIGIN}/en/{cs}/prices/): {UI['en']['prices_intro']}\n")
+        for lang in LANGS:
+            u = UI[lang]
+            cat_names = ", ".join(CATS.get(c, GENERIC_CAT)[lang] for c in cats)
+            part = [f"### {LANG_NAMES[lang]} ({lang})\n",
+                    u["desc_city"].format(cats=cat_names, n=total, offers=plural(lang, total)) + "\n"]
+            part += [f"- {h}: {s}" for h, s in FEATURES[lang]]
+            part.append("")
+            part.append(f"- [{city_name(city, lang)}]({ORIGIN}/{lang}/{cs}/)")
+            part += [cat_line(c, lang) for c in cats]
+            part.append(f"- [{u['prices_title'].format(month=u['months'][month] + ' ' + str(now.year))}]"
+                        f"({ORIGIN}/{lang}/{cs}/prices/)")
+            part.append(f"- [{u['install']}]({ORIGIN}/download) · [App Store]({APP_STORE}) · [Google Play]({PLAY})\n")
+            langs_part.append("\n".join(part))
+    if live:
+        out.append(f"## Listings right now (updated {now.date().isoformat()})\n")
+        out.append("\n".join(live))
+    if langs_part:
+        out.append("## Avail in every app language\n")
+        out.append("\n".join(langs_part))
+    out.append(LLMS_TAIL)
+    return "\n".join(out)
+
 
 # ---- Данные ---------------------------------------------------------------
 
@@ -412,8 +574,10 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
         city_ads = [a for (c, _, _), xs in groups.items() if c == city for a in xs]
         if not city_ads:
             continue
-        cats = sorted({k[1] for k in groups if k[0] == city}, key=lambda c: -sum(
-            len(v) for k, v in groups.items() if k[0] == city and k[1] == c))
+        # При равенстве — по алфавиту: иначе порядок зависит от случайного
+        # порядка множества и страницы «меняются» каждую ночь без причины.
+        cats = sorted({k[1] for k in groups if k[0] == city}, key=lambda c: (-sum(
+            len(v) for k, v in groups.items() if k[0] == city and k[1] == c), c))
         for lang in LANGS:
             u = UI[lang]
             cname = city_name(city, lang)
@@ -442,7 +606,7 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
                 cpath = f"{base}{c}/"
                 c_ads = [a for k, v in groups.items() if k[0] == city and k[1] == c for a in v]
                 dists = sorted({k[2] for k in groups if k[0] == city and k[1] == c and k[2]},
-                               key=lambda d: -len(groups[(city, c, d)]))
+                               key=lambda d: (-len(groups[(city, c, d)]), d))
                 prices = [p for p, _ in (price_of(a) for a in c_ads) if p]
                 pmin = money(min(prices), "THB") if prices else ""
                 title = f"{clabel} — {cname}: {len(c_ads)} {plural(lang, len(c_ads))}" + (f" {u['from']} {pmin}" if pmin else "")
@@ -557,6 +721,7 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
                            x_default=f"/a/{a['id']}/"))
             urls.append(path)
 
+    files["llms.txt"] = llms_txt(groups, now)
     stamp = now.date().isoformat()
     files["sitemap-seo.xml"] = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                                 '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
