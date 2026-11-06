@@ -160,7 +160,7 @@ Sewa apartmen di Phuket: 92 tawaran dengan foto dan harga. Hubungi pemilik dalam
 
 ### Tiếng Việt (vi)
 
-Cho thuê căn hộ ở Phuket: 92 tin có ảnh và giá. Nhắn chủ nhà bằng ngôn ngữ của bạn — Avail sẽ dịch.
+Cho thuê căn hộ ở Phuket: 92 tin đăng có ảnh và giá. Nhắn chủ nhà bằng ngôn ngữ của bạn — Avail sẽ dịch.
 
 - Đăng tin bằng giọng nói: Hãy nói bạn bán hoặc cho thuê gì. AI sẽ tự điền thông tin
 - Tiếng Thái, tiếng Nga, tiếng Anh — không thành vấn đề: Khung chat tự dịch từng tin nhắn
@@ -169,13 +169,13 @@ Cho thuê căn hộ ở Phuket: 92 tin có ảnh và giá. Nhắn chủ nhà b�
 - Bảng giá → hàng chục tin đăng: Tải tệp lên, AI tự tạo tin đăng
 
 - [Phuket](https://avail.asia/vi/phuket/)
-- [Cho thuê căn hộ — Phuket](https://avail.asia/vi/phuket/apartments-rent/): 92 tin
+- [Cho thuê căn hộ — Phuket](https://avail.asia/vi/phuket/apartments-rent/): 92 tin đăng
 - [Giá ở Phuket — tháng 11 2026](https://avail.asia/vi/phuket/prices/)
 - [Tải Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
 
 ### ខ្មែរ (km)
 
-ផ្ទះល្វែងសម្រាប់ជួល នៅភូកេត៖ 92 ការផ្តល់ជូន មានរូបភាព និងតម្លៃ។ ផ្ញើសារទៅម្ចាស់ជាភាសារបស់អ្នក — Avail បកប្រែ។
+ផ្ទះល្វែងសម្រាប់ជួល នៅភូកេត៖ 92 ប្រកាស មានរូបភាព និងតម្លៃ។ ផ្ញើសារទៅម្ចាស់ជាភាសារបស់អ្នក — Avail បកប្រែ។
 
 - ដាក់ការផ្សាយដោយសំឡេង: ប្រាប់យើងថា អ្នកលក់ ឬដាក់ឱ្យជួលអ្វី។ AI នឹងបំពេញព័ត៌មានឱ្យដោយខ្លួនឯង
 - ភាសាថៃ រុស្ស៊ី អង់គ្លេស — ភាសាណាក៏បាន: ការជជែកនឹងបកប្រែគ្រប់សារដោយស្វ័យប្រវត្តិ
@@ -184,7 +184,7 @@ Cho thuê căn hộ ở Phuket: 92 tin có ảnh và giá. Nhắn chủ nhà b�
 - បញ្ជីតម្លៃ → ការផ្សាយរាប់សិប: ផ្ទុកឯកសារឡើង AI នឹងបង្កើតការផ្សាយដោយខ្លួនឯង
 
 - [ភូកេត](https://avail.asia/km/phuket/)
-- [ផ្ទះល្វែងសម្រាប់ជួល — ភូកេត](https://avail.asia/km/phuket/apartments-rent/): 92 ការផ្តល់ជូន
+- [ផ្ទះល្វែងសម្រាប់ជួល — ភូកេត](https://avail.asia/km/phuket/apartments-rent/): 92 ប្រកាស
 - [តម្លៃនៅភូកេត — វិច្ឆិកា 2026](https://avail.asia/km/phuket/prices/)
 - [ទាញយក Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
 
