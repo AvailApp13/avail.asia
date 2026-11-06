@@ -575,6 +575,14 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
         groups.setdefault((city, a["_cat"], a.get("district") or ""), []).append(a)
 
     urls = []
+    # Фото каждой страницы — в карту сайта (расширение image): поисковики
+    # и ИИ-помощники берут картинки из Bing/Google Картинок, без карты
+    # они подставляли чужие изображения по теме.
+    page_imgs = {}
+
+    def first_photos(xs, n=5):
+        return [p[0] for p in ((a.get("photo") or []) for a in xs) if p][:n]
+
     month = now.month - 1
     for city, cinfo in CITIES.items():
         cs = cinfo["slug"]
@@ -607,6 +615,7 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
                            image=(city_ads[0].get("photo") or [""])[0],
                            ld=[crumbs_ld(trail), itemlist(city_ads, lang)]))
             urls.append(base)
+            page_imgs[base] = first_photos(city_ads)
             # Раздел и районы
             for c in cats:
                 clabel = CATS.get(c, GENERIC_CAT)[lang]
@@ -629,6 +638,7 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
                 put(cpath, page(lang, cpath, title, desc, body, alternates={l: f"/{l}/{cs}/{c}/" for l in LANGS},
                                 image=(c_ads[0].get("photo") or [""])[0], ld=[crumbs_ld(trail), itemlist(c_ads, lang)]))
                 urls.append(cpath)
+                page_imgs[cpath] = first_photos(c_ads)
                 for d in dists:
                     d_ads = groups[(city, c, d)]
                     dname = district_name(d, lang)
@@ -649,6 +659,7 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
                                     alternates={l: f"/{l}/{cs}/{c}/{slug(d)}/" for l in LANGS},
                                     image=(d_ads[0].get("photo") or [""])[0], ld=[crumbs_ld(trail), itemlist(d_ads, lang)]))
                     urls.append(dpath)
+                    page_imgs[dpath] = first_photos(d_ads)
             # Цены за месяц
             ppath = f"{base}prices/"
             mtitle = u["prices_title"].format(month=f"{u['months'][month]} {now.year}")
@@ -727,12 +738,20 @@ def build(out: str, ads: list, now: datetime.datetime) -> dict:
                            image=photos[0] if photos else "", ld=[product, crumbs_ld(trail + [(name, path)])],
                            x_default=f"/a/{a['id']}/"))
             urls.append(path)
+            page_imgs[path] = photos[:5]
 
     files["llms.txt"] = llms_txt(groups, now)
     stamp = now.date().isoformat()
+
+    def img_tags(u):
+        return "".join(f"<image:image><image:loc>{esc(x)}</image:loc></image:image>"
+                       for x in page_imgs.get(u, []) if isinstance(x, str) and x.startswith("https://"))
+
     files["sitemap-seo.xml"] = ('<?xml version="1.0" encoding="UTF-8"?>\n'
-                                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-                                + "".join(f"<url><loc>{ORIGIN}{u}</loc><lastmod>{stamp}</lastmod></url>\n" for u in urls)
+                                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+                                'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
+                                + "".join(f"<url><loc>{ORIGIN}{u}</loc><lastmod>{stamp}</lastmod>{img_tags(u)}</url>\n"
+                                          for u in urls)
                                 + "</urlset>\n")
     return files
 
