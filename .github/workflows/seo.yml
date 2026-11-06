@@ -8,6 +8,12 @@ on:
   schedule:
     - cron: "17 20 * * *"
   workflow_dispatch:
+    inputs:
+      ping_all:
+        description: 'Сообщить Bing и Яндексу обо ВСЕХ страницах (IndexNow), а не только об изменившихся'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -24,7 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Собрать страницы из объявлений
-        run: python3 seo/build_seo.py . --ping
+        run: python3 seo/build_seo.py . ${{ inputs.ping_all && '--ping-all' || '--ping' }}
       - name: Сохранить изменения
         id: save
         run: |

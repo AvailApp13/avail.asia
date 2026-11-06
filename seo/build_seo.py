@@ -862,7 +862,12 @@ def main():
     files = build(out, ads, now)
     changed = write(out, files)
     print(f"объявлений: {len(ads)}, страниц: {len(files) - 1}, изменилось: {len(changed)}")
-    if "--ping" in sys.argv:
+    if "--ping-all" in sys.argv:
+        # Разово (запуск seo.yml вручную с ping_all): сообщить Bing и Яндексу
+        # обо всех страницах сразу — после крупной переделки сайта.
+        every = [ORIGIN + "/" + rel[: -len("index.html")] for rel in files if rel.endswith("index.html")]
+        indexnow(out, [ORIGIN + "/", ORIGIN + "/llms.txt"] + every)
+    elif "--ping" in sys.argv:
         indexnow(out, changed)
 
 
