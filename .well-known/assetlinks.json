@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.asiaavail.avail",
       "sha256_cert_fingerprints": [
-        "22:46:36:F2:53:B6:0C:3A:54:CB:EE:CD:3A:57:86:34:C6:7A:0C:D3:28:C5:48:CF:54:10:D4:43:0C:70:28:D4"
+        "22:46:36:F2:53:B6:0C:3A:54:CB:EE:CD:3A:57:86:34:C6:7A:0C:D3:28:C5:48:CF:54:10:D4:43:0C:70:28:D4",
+        "FE:B7:7F:1E:82:44:E8:61:F2:39:66:4B:2F:95:F6:0C:AB:26:70:DB:79:0D:A3:65:C0:FD:5F:33:4F:7C:D8:E6"
       ]
     }
   }
