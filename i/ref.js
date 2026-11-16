@@ -140,6 +140,10 @@
   var L = pickLang(qLang);
   var app = inAppName(navigator.userAgent);
   var vid = visitor();
+  // 16.11: кнопки шаблона WhatsApp «App Store» / «Google Play» — ?to=ios|android:
+  // засчитываем переход (crm_public_hit с касанием) и сразу уводим в магазин.
+  var toRaw = String(params.get("to") || "").toLowerCase();
+  var directTo = mode === "i" && !preview && (toRaw === "ios" || toRaw === "android") ? toRaw : "";
 
   var screen = "loading";
   var hitState = "pending"; // pending | valid | invalid | unknown | rate_limited
@@ -544,6 +548,20 @@
       hitState = "invalid";
       screen = "invalid";
       render();
+      return;
+    }
+    if (directTo) {
+      var gone = false;
+      var leave = function () {
+        if (gone) return;
+        gone = true;
+        location.replace(directTo === "ios"
+          ? "https://apps.apple.com/app/id6466668151"
+          : "https://play.google.com/store/apps/details?id=com.asiaavail.avail&referrer="
+            + encodeURIComponent("k=" + code + "&utm_source=crm&utm_medium=invite"));
+      };
+      sendHit(true).then(leave);
+      setTimeout(leave, 1500);
       return;
     }
     claimed = readClaimed();
