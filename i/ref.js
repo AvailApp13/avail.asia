@@ -143,6 +143,15 @@
   // 16.11: кнопки шаблона WhatsApp «App Store» / «Google Play» — ?to=ios|android:
   // засчитываем переход (crm_public_hit с касанием) и сразу уводим в магазин.
   var toRaw = String(params.get("to") || "").toLowerCase();
+  // 17.11 (владелец): кнопка «Download the app» в WhatsApp ведёт сюда без ?to= —
+  // на телефоне сразу в магазин по устройству (iPhone/iPad → App Store,
+  // Android → Google Play с кодом). На компьютере — страница как раньше.
+  if (toRaw !== "ios" && toRaw !== "android") {
+    var ua0 = String(navigator.userAgent || "");
+    if (/iPhone|iPad|iPod/i.test(ua0)
+        || (/Macintosh/i.test(ua0) && (navigator.maxTouchPoints || 0) > 1)) toRaw = "ios";
+    else if (/Android/i.test(ua0)) toRaw = "android";
+  }
   var directTo = mode === "i" && !preview && (toRaw === "ios" || toRaw === "android") ? toRaw : "";
 
   var screen = "loading";
