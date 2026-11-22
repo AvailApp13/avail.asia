@@ -58,22 +58,22 @@ Avail is its own product, not a copy or a mix of other services, and it is not a
 - How do I post many listings at once? Use bulk upload: send a price list file and AI creates draft listings for review.
 - Does Avail show the sellers' phone numbers or emails on the web? No. Contact goes through the app.
 
-## Listings right now (updated 2026-11-21)
+## Listings right now (updated 2026-11-22)
 
-### Phuket: 70 offers
+### Phuket: 73 offers
 
 - [Apartments for rent — Phuket](https://avail.asia/en/phuket/apartments-rent/): 61 offers
   - [Bang Tao](https://avail.asia/en/phuket/apartments-rent/bang-tao/) (29), [Phuket Town](https://avail.asia/en/phuket/apartments-rent/phuket-town/) (12), [Kamala](https://avail.asia/en/phuket/apartments-rent/kamala/) (5), [Rawai](https://avail.asia/en/phuket/apartments-rent/rawai/) (5), [Karon](https://avail.asia/en/phuket/apartments-rent/karon/) (4), [Chalong](https://avail.asia/en/phuket/apartments-rent/chalong/) (2), [Pa Khlok](https://avail.asia/en/phuket/apartments-rent/pa-khlok/) (1), [Panwa](https://avail.asia/en/phuket/apartments-rent/panwa/) (1), [Patong](https://avail.asia/en/phuket/apartments-rent/patong/) (1), [Thalang](https://avail.asia/en/phuket/apartments-rent/thalang/) (1)
+- [Scooter and bike rental — Phuket](https://avail.asia/en/phuket/bikes-rent/): 5 offers
 - [Listings — Phuket](https://avail.asia/en/phuket/things--sale/): 4 offers
 - [Listings — Phuket](https://avail.asia/en/phuket/electronics--sale/): 3 offers
-- [Scooter and bike rental — Phuket](https://avail.asia/en/phuket/bikes-rent/): 2 offers
 - [Phuket prices — November 2026](https://avail.asia/en/phuket/prices/): How much renting and buying costs in Phuket by district, based on Avail listings and updated every night. Prices are as the owner set them: per day or per month.
 
 ## Avail in every app language
 
 ### Русский (ru)
 
-Аренда квартир, Объявления, Объявления, Аренда байков на Пхукете: 70 предложений с фото и ценами. Пишите хозяевам на своём языке — Avail переведёт.
+Аренда квартир, Аренда байков, Объявления, Объявления на Пхукете: 73 предложения с фото и ценами. Пишите хозяевам на своём языке — Avail переведёт.
 
 - Объявление голосом: Расскажите, что продаёте или сдаёте. ИИ сам заполнит поля
 - Тайский, русский, английский — неважно: Чат сам переведёт каждое сообщение
@@ -83,15 +83,15 @@ Avail is its own product, not a copy or a mix of other services, and it is not a
 
 - [Пхукет](https://avail.asia/ru/phuket/)
 - [Аренда квартир — Пхукет](https://avail.asia/ru/phuket/apartments-rent/): 61 предложение
+- [Аренда байков — Пхукет](https://avail.asia/ru/phuket/bikes-rent/): 5 предложений
 - [Объявления — Пхукет](https://avail.asia/ru/phuket/things--sale/): 4 предложения
 - [Объявления — Пхукет](https://avail.asia/ru/phuket/electronics--sale/): 3 предложения
-- [Аренда байков — Пхукет](https://avail.asia/ru/phuket/bikes-rent/): 2 предложения
 - [Цены на Пхукете — ноябрь 2026](https://avail.asia/ru/phuket/prices/)
 - [Скачать Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
 
 ### English (en)
 
-Apartments for rent, Listings, Listings, Scooter and bike rental in Phuket: 70 offers with photos and prices. Message owners in your own language — Avail translates.
+Apartments for rent, Scooter and bike rental, Listings, Listings in Phuket: 73 offers with photos and prices. Message owners in your own language — Avail translates.
 
 - List it by voice: Tell us what you’re selling or renting out. AI fills in the fields for you
 - Thai, Russian, English — no problem: The chat translates every message for you
@@ -101,15 +101,15 @@ Apartments for rent, Listings, Listings, Scooter and bike rental in Phuket: 70 o
 
 - [Phuket](https://avail.asia/en/phuket/)
 - [Apartments for rent — Phuket](https://avail.asia/en/phuket/apartments-rent/): 61 offers
+- [Scooter and bike rental — Phuket](https://avail.asia/en/phuket/bikes-rent/): 5 offers
 - [Listings — Phuket](https://avail.asia/en/phuket/things--sale/): 4 offers
 - [Listings — Phuket](https://avail.asia/en/phuket/electronics--sale/): 3 offers
-- [Scooter and bike rental — Phuket](https://avail.asia/en/phuket/bikes-rent/): 2 offers
 - [Phuket prices — November 2026](https://avail.asia/en/phuket/prices/)
 - [Get Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
 
 ### ไทย (th)
 
-ห้องพัก คอนโดให้เช่า, ประกาศ, ประกาศ, เช่ามอเตอร์ไซค์ ในภูเก็ต: 70 รายการ พร้อมรูปและราคา ทักเจ้าของเป็นภาษาของคุณ — Avail แปลให้
+ห้องพัก คอนโดให้เช่า, เช่ามอเตอร์ไซค์, ประกาศ, ประกาศ ในภูเก็ต: 73 รายการ พร้อมรูปและราคา ทักเจ้าของเป็นภาษาของคุณ — Avail แปลให้
 
 - ลงประกาศด้วยเสียง: บอกว่าคุณขายหรือให้เช่าอะไร AI กรอกข้อมูลให้เอง
 - ไทย รัสเซีย อังกฤษ — ภาษาไหนก็ได้: แชทแปลทุกข้อความให้อัตโนมัติ
@@ -119,15 +119,15 @@ Apartments for rent, Listings, Listings, Scooter and bike rental in Phuket: 70 o
 
 - [ภูเก็ต](https://avail.asia/th/phuket/)
 - [ห้องพัก คอนโดให้เช่า — ภูเก็ต](https://avail.asia/th/phuket/apartments-rent/): 61 รายการ
+- [เช่ามอเตอร์ไซค์ — ภูเก็ต](https://avail.asia/th/phuket/bikes-rent/): 5 รายการ
 - [ประกาศ — ภูเก็ต](https://avail.asia/th/phuket/things--sale/): 4 รายการ
 - [ประกาศ — ภูเก็ต](https://avail.asia/th/phuket/electronics--sale/): 3 รายการ
-- [เช่ามอเตอร์ไซค์ — ภูเก็ต](https://avail.asia/th/phuket/bikes-rent/): 2 รายการ
 - [ราคาในภูเก็ต — พฤศจิกายน 2026](https://avail.asia/th/phuket/prices/)
 - [ดาวน์โหลด Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
 
 ### 中文 (zh)
 
-普吉岛公寓出租, 信息, 信息, 摩托车租赁：70 条，附照片和价格。用您的语言联系房东 — Avail 自动翻译。
+普吉岛公寓出租, 摩托车租赁, 信息, 信息：73 条，附照片和价格。用您的语言联系房东 — Avail 自动翻译。
 
 - 语音发布信息: 说出您要出售或出租的东西，AI 会自动填写各项内容
 - 泰语、俄语、英语——都没问题: 聊天中的每条消息都会自动翻译
@@ -137,15 +137,15 @@ Apartments for rent, Listings, Listings, Scooter and bike rental in Phuket: 70 o
 
 - [普吉岛](https://avail.asia/zh/phuket/)
 - [公寓出租 — 普吉岛](https://avail.asia/zh/phuket/apartments-rent/): 61 条
+- [摩托车租赁 — 普吉岛](https://avail.asia/zh/phuket/bikes-rent/): 5 条
 - [信息 — 普吉岛](https://avail.asia/zh/phuket/things--sale/): 4 条
 - [信息 — 普吉岛](https://avail.asia/zh/phuket/electronics--sale/): 3 条
-- [摩托车租赁 — 普吉岛](https://avail.asia/zh/phuket/bikes-rent/): 2 条
 - [普吉岛价格 — 11月 2026](https://avail.asia/zh/phuket/prices/)
 - [下载 Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
 
 ### Bahasa Indonesia (id)
 
-Sewa apartemen, Iklan, Iklan, Sewa motor di Phuket: 70 penawaran dengan foto dan harga. Hubungi pemilik dalam bahasa Anda — Avail menerjemahkan.
+Sewa apartemen, Sewa motor, Iklan, Iklan di Phuket: 73 penawaran dengan foto dan harga. Hubungi pemilik dalam bahasa Anda — Avail menerjemahkan.
 
 - Pasang iklan dengan suara: Ceritakan apa yang Anda jual atau sewakan. AI langsung mengisi kolomnya
 - Bahasa Thai, Rusia, Inggris — tidak masalah: Chat menerjemahkan setiap pesan secara otomatis
@@ -155,15 +155,15 @@ Sewa apartemen, Iklan, Iklan, Sewa motor di Phuket: 70 penawaran dengan foto dan
 
 - [Phuket](https://avail.asia/id/phuket/)
 - [Sewa apartemen — Phuket](https://avail.asia/id/phuket/apartments-rent/): 61 penawaran
+- [Sewa motor — Phuket](https://avail.asia/id/phuket/bikes-rent/): 5 penawaran
 - [Iklan — Phuket](https://avail.asia/id/phuket/things--sale/): 4 penawaran
 - [Iklan — Phuket](https://avail.asia/id/phuket/electronics--sale/): 3 penawaran
-- [Sewa motor — Phuket](https://avail.asia/id/phuket/bikes-rent/): 2 penawaran
 - [Harga di Phuket — November 2026](https://avail.asia/id/phuket/prices/)
 - [Unduh Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
 
 ### Bahasa Melayu (ms)
 
-Sewa apartmen, Iklan, Iklan, Sewa motosikal di Phuket: 70 tawaran dengan foto dan harga. Hubungi pemilik dalam bahasa anda — Avail menterjemah.
+Sewa apartmen, Sewa motosikal, Iklan, Iklan di Phuket: 73 tawaran dengan foto dan harga. Hubungi pemilik dalam bahasa anda — Avail menterjemah.
 
 - Siarkan iklan dengan suara: Beritahu kami apa yang anda jual atau sewakan. AI akan mengisi butiran sendiri
 - Bahasa Thai, Rusia, Inggeris — tiada masalah: Sembang menterjemah setiap mesej secara automatik
@@ -173,15 +173,15 @@ Sewa apartmen, Iklan, Iklan, Sewa motosikal di Phuket: 70 tawaran dengan foto da
 
 - [Phuket](https://avail.asia/ms/phuket/)
 - [Sewa apartmen — Phuket](https://avail.asia/ms/phuket/apartments-rent/): 61 tawaran
+- [Sewa motosikal — Phuket](https://avail.asia/ms/phuket/bikes-rent/): 5 tawaran
 - [Iklan — Phuket](https://avail.asia/ms/phuket/things--sale/): 4 tawaran
 - [Iklan — Phuket](https://avail.asia/ms/phuket/electronics--sale/): 3 tawaran
-- [Sewa motosikal — Phuket](https://avail.asia/ms/phuket/bikes-rent/): 2 tawaran
 - [Harga di Phuket — November 2026](https://avail.asia/ms/phuket/prices/)
 - [Muat turun Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
 
 ### Tiếng Việt (vi)
 
-Cho thuê căn hộ, Tin đăng, Tin đăng, Thuê xe máy ở Phuket: 70 tin đăng có ảnh và giá. Nhắn chủ nhà bằng ngôn ngữ của bạn — Avail sẽ dịch.
+Cho thuê căn hộ, Thuê xe máy, Tin đăng, Tin đăng ở Phuket: 73 tin đăng có ảnh và giá. Nhắn chủ nhà bằng ngôn ngữ của bạn — Avail sẽ dịch.
 
 - Đăng tin bằng giọng nói: Hãy nói bạn bán hoặc cho thuê gì. AI sẽ tự điền thông tin
 - Tiếng Thái, tiếng Nga, tiếng Anh — không thành vấn đề: Khung chat tự dịch từng tin nhắn
@@ -191,15 +191,15 @@ Cho thuê căn hộ, Tin đăng, Tin đăng, Thuê xe máy ở Phuket: 70 tin đ
 
 - [Phuket](https://avail.asia/vi/phuket/)
 - [Cho thuê căn hộ — Phuket](https://avail.asia/vi/phuket/apartments-rent/): 61 tin đăng
+- [Thuê xe máy — Phuket](https://avail.asia/vi/phuket/bikes-rent/): 5 tin đăng
 - [Tin đăng — Phuket](https://avail.asia/vi/phuket/things--sale/): 4 tin đăng
 - [Tin đăng — Phuket](https://avail.asia/vi/phuket/electronics--sale/): 3 tin đăng
-- [Thuê xe máy — Phuket](https://avail.asia/vi/phuket/bikes-rent/): 2 tin đăng
 - [Giá ở Phuket — tháng 11 2026](https://avail.asia/vi/phuket/prices/)
 - [Tải Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
 
 ### ខ្មែរ (km)
 
-ផ្ទះល្វែងសម្រាប់ជួល, ប្រកាស, ប្រកាស, ជួលម៉ូតូ នៅភូកេត៖ 70 ប្រកាស មានរូបភាព និងតម្លៃ។ ផ្ញើសារទៅម្ចាស់ជាភាសារបស់អ្នក — Avail បកប្រែ។
+ផ្ទះល្វែងសម្រាប់ជួល, ជួលម៉ូតូ, ប្រកាស, ប្រកាស នៅភូកេត៖ 73 ប្រកាស មានរូបភាព និងតម្លៃ។ ផ្ញើសារទៅម្ចាស់ជាភាសារបស់អ្នក — Avail បកប្រែ។
 
 - ដាក់ការផ្សាយដោយសំឡេង: ប្រាប់យើងថា អ្នកលក់ ឬដាក់ឱ្យជួលអ្វី។ AI នឹងបំពេញព័ត៌មានឱ្យដោយខ្លួនឯង
 - ភាសាថៃ រុស្ស៊ី អង់គ្លេស — ភាសាណាក៏បាន: ការជជែកនឹងបកប្រែគ្រប់សារដោយស្វ័យប្រវត្តិ
@@ -209,9 +209,9 @@ Cho thuê căn hộ, Tin đăng, Tin đăng, Thuê xe máy ở Phuket: 70 tin đ
 
 - [ភូកេត](https://avail.asia/km/phuket/)
 - [ផ្ទះល្វែងសម្រាប់ជួល — ភូកេត](https://avail.asia/km/phuket/apartments-rent/): 61 ប្រកាស
+- [ជួលម៉ូតូ — ភូកេត](https://avail.asia/km/phuket/bikes-rent/): 5 ប្រកាស
 - [ប្រកាស — ភូកេត](https://avail.asia/km/phuket/things--sale/): 4 ប្រកាស
 - [ប្រកាស — ភូកេត](https://avail.asia/km/phuket/electronics--sale/): 3 ប្រកាស
-- [ជួលម៉ូតូ — ភូកេត](https://avail.asia/km/phuket/bikes-rent/): 2 ប្រកាស
 - [តម្លៃនៅភូកេត — វិច្ឆិកា 2026](https://avail.asia/km/phuket/prices/)
 - [ទាញយក Avail](https://avail.asia/download) · [App Store](https://apps.apple.com/app/id6466668151) · [Google Play](https://play.google.com/store/apps/details?id=com.asiaavail.avail)
 
